@@ -17,6 +17,7 @@
   )
 
   let entry(desc, value) = {
+    set align(top)
     stack(
       spacing: 0.20em,
       text(size: 1.0em, font: "Bebas Neue", fill: luma(150), desc),

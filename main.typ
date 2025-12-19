@@ -13,7 +13,7 @@
   doc_num: "1",
   status: "status",
   creator: "Remi Godin",
-  approver: "Remi Godin",
+  approver: none,
   owner: "True Zero",
   // Style overrides
   font: "Bebas Neue",
