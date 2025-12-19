@@ -1,4 +1,4 @@
-#let mono(it) = text(font:"JetBrains Mono", weight: "bold")[#it]
+#let mono(it) = upper(text(font: "JetBrains Mono", weight: "bold")[#it])
 #let desc(it) = text(fill: luma(150))[#it]
 
 #let title_block_iso7200(
@@ -13,24 +13,24 @@
   owner: "owner",
 ) = {
   let full_id = (
-    project_id + "-" + scope_id + "-" + iec_61355_type + "-" + doc_num
+    "==" + project_id + "=" + scope_id + "&" + iec_61355_type + "-" + doc_num
   )
 
   let entry(desc, value) = {
     stack(
-    spacing: 0.20em,
-      text(size: 0.8em,font: "JetBrains Mono",fill: luma(150), desc),
-      value
+      spacing: 0.20em,
+      text(size: 1.0em, font: "Bebas Neue", fill: luma(150), desc),
+      value,
     )
   }
-  stack(
-  spacing: 0.6em,
-  line(length: 30%),
-  entry("REFERENCE ID", mono(full_id)),
-  entry("DATE OF ISSUE", mono(datetime.today().display())),
-  // entry("CREATOR", mono(creator)),
-  // entry("APPROVER", mono(approver)),
-  entry("REVISION", mono(sys.inputs.at("revision", default: "DRAFT")))
+  table(
+    columns: (20%, 20%),
+    table.cell(colspan: 2, entry("REFERENCE ID", mono(full_id))),
+    entry("CREATOR", mono(creator)),
+    entry("DATE OF ISSUE", mono(datetime.today().display())),
+    entry("APPROVER", mono(approver)),
+    entry("REVISION", mono(sys.inputs.at("revision", default: "DRAFT"))),
+    table.cell(colspan: 2, entry("LEGAL OWNER", mono(owner))),
   )
 }
 

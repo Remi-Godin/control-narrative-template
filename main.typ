@@ -1,4 +1,5 @@
 #import "./template.typ": *
+#show: formatting
 
 #title_page(
   // Title information
@@ -13,8 +14,42 @@
   status: "status",
   creator: "Remi Godin",
   approver: "Remi Godin",
-  owner: "TrueZero",
+  owner: "True Zero",
   // Style overrides
   font: "Bebas Neue",
   accent_color: rgb("#0971ce"),
 )
+
+#outline()
+
+#routine(
+  landscape: true,
+  function_id: "PM1",
+  doctype: "EFE",
+  docnum: 1,
+  creator: "Remi Godin",
+  approver: none,
+  legal_owner: "TrueZero",
+  date_of_issue: "2025-10-02",
+)[
+  = Test
+  #lorem(50)
+  == Test
+  #lorem(50)
+]
+
+#routine(
+  landscape: false,
+  function_id: "PM1",
+  doctype: "EFE",
+  docnum: 1,
+  creator: "Remi Godin",
+  approver: none,
+  legal_owner: "TrueZero",
+  date_of_issue: "2025-10-02",
+)[
+  = Test
+  #lorem(50)
+  == Test
+  #lorem(50)
+]
