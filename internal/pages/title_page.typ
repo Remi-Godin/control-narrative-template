@@ -1,4 +1,4 @@
-#let mono(it) = text(font: "Noto Sans Mono", fallback: true, raw(it))
+#let mono(it) = text(font:"JetBrains Mono", weight: "bold")[#it]
 #let desc(it) = text(fill: luma(150))[#it]
 
 #let title_block_iso7200(
@@ -13,85 +13,25 @@
   owner: "owner",
 ) = {
   let full_id = (
-    "==" + project_id + " =" + scope_id + " &" + iec_61355_type + " -" + doc_num
+    project_id + "-" + scope_id + "-" + iec_61355_type + "-" + doc_num
   )
 
-  block(width: 100mm, stroke: 0.5pt, inset: 0pt, {
-    set text(size: 7pt, font: "DejaVu Sans") // Standards usually prefer sans-serif
-    set table(stroke: 0.5pt, inset: 4pt)
-
-    table(
-      columns: (auto, auto, auto, 8em),
-      rows: auto,
-      table.cell(colspan: 3)[],
-      stack(dir: ttb, spacing: 0.4em, desc("PROJECT"), stack(
-        dir: ltr,
-        spacing: 1fr,
-        "==",
-        project_id,
-      )),
-      table.cell(colspan: 3)[],
-      stack(dir: ttb, spacing: 0.4em, desc("FUNCTION"), stack(
-        dir: ltr,
-        spacing: 1fr,
-        "=",
-        scope_id,
-      )),
-      table.cell(colspan: 3)[],
-      stack(dir: ttb, spacing: 0.4em, desc("DOC TYPE"), stack(
-        dir: ltr,
-        spacing: 1fr,
-        "&",
-        iec_61355_type,
-      )),
-      table.cell(colspan: 3)[],
-      stack(dir: ttb, spacing: 0.4em, desc("DOC NUM"), stack(
-        dir: ltr,
-        spacing: 1fr,
-        align(left, sym.dash),
-        doc_num,
-      )),
+  let entry(desc, value) = {
+    stack(
+    spacing: 0.20em,
+      text(size: 0.8em,font: "JetBrains Mono",fill: luma(150), desc),
+      value
     )
-
-    table(
-      columns: (30mm, 20mm, 25mm, 25mm),
-      rows: (auto, auto, auto),
-
-      // Row 1: Identification Number (The 81346 Full String)
-      table.cell(colspan: 3)[
-        #desc([IDENTIFICATION NUMBER (ISO 81346)]) \
-        #text(size: 1.4em, weight: "bold", mono(full_id))
-      ],
-      [
-        #desc([REVISION]) \
-        #text(size: 1.4em, weight: "bold", mono(revision))
-      ],
-
-      // Row 2: Document Type and Status
-      table.cell(colspan: 2)[
-        #desc([DOCUMENT TYPE (IEC 61355)]) \
-        Control Narrative (&EFE)
-      ],
-      table.cell(colspan: 2, align: center)[
-        #desc([LEGAL OWNER]) \
-        #text(size: 8pt, weight: "bold", owner)
-      ],
-
-      // Row 3: Workflow
-      [
-        #text(size: 5pt, gray)[CREATOR] \
-        #creator
-      ],
-      [
-        #text(size: 5pt, gray)[APPROVED] \
-        #approver
-      ],
-      table.cell(colspan: 2)[
-        #text(size: 5pt, gray)[DATE OF ISSUE] \
-        #datetime.today().display()
-      ],
-    )
-  })
+  }
+  stack(
+  spacing: 0.6em,
+  line(length: 30%),
+  entry("REFERENCE ID", mono(full_id)),
+  entry("DATE OF ISSUE", mono(datetime.today().display())),
+  // entry("CREATOR", mono(creator)),
+  // entry("APPROVER", mono(approver)),
+  entry("REVISION", mono(sys.inputs.at("revision", default: "DRAFT")))
+  )
 }
 
 /********************
