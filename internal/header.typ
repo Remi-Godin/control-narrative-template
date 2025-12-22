@@ -13,7 +13,9 @@
         inset: (top: 20pt),
         align: top,
         columns: (auto, 1fr, auto),
-        title, none, (q2.last().supplement, q2.last().body).join(": "),
+        title + ": " + document_type,
+        none,
+        (q2.last().supplement, q2.last().body).join(": "),
       )
     }
   }
