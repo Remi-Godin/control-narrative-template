@@ -8,21 +8,15 @@
   scope_id: "NX102",
   iec_61355_type: "EFE",
   doc_num: "1",
-  status: "draft",
   creator: "Remi Godin",
   approver: none,
   owner: "True Zero",
   accent_color: rgb("#0971ce"),
-  revision: "1.2",
 )
 
 
-= Test
+#show: main
 
-== Test
-=== Test
-==== Test
-= Test
 
 #routine(
   landscape: true,
@@ -32,7 +26,7 @@
   creator: "Remi Godin",
   approver: none,
   legal_owner: "TrueZero",
-  date_of_issue: "2025-10-02",
+  issue_date: "2025-10-02",
 )[
   == Test
   #lorem(50)
@@ -46,7 +40,7 @@
   creator: "Remi Godin",
   approver: none,
   legal_owner: "TrueZero",
-  date_of_issue: "2025-10-02",
+  issue_date: "2025-10-02",
 )[
   == Test
   #lorem(50)

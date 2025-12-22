@@ -102,12 +102,22 @@
     The ISO 7200 document provides guidelines on title blocks of document.
 
     ==== Notice of non-compliance
-    This document does not aim to be fully compliant with ISO 7200. Efforts will be made to include the necessary information as define by the standard, but this document does not aim to comply with any formatting constraints.
+    This document does not aim to be fully compliant with ISO 7200. Efforts will be made to include the necessary information as defined by the standard, but this document does not aim to comply with any formatting constraints.
 
     === RFC 2119
     The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
     NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
     "OPTIONAL" in this document are to be interpreted as described in #link("https://www.rfc-editor.org/rfc/rfc2119", text(fill: blue, "RFC 2119")).
+
+    = Document Control
+    == Revision control
+    This document designed to be versionned control using git through a single branch. The revision number reflects the number of commits preceding the release of the document. The build hash identifies from which commit this document was compiled from, and also provides a secondary reference to ensure that revision number and build hash are a match.
+
+    == Document Status
+    There are two status: Draft, and Released. Documents with the Draft status MUST NOT be used for final logic implementation.
+
+    == Build hash and revision mismatch
+    In the event that a build hash and revision number mismatch between two compiled document instances, i.e. two documents have the same revision number but different build hash, or vice versa, then contact the document creator, approver, or legal owner.
 
   ]
 }

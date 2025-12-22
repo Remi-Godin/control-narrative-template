@@ -4,7 +4,29 @@
 #import "heading_rules/heading_3.typ": *
 #import "heading_rules/heading_4.typ": *
 #import "footer.typ": *
+#import "header.typ": *
 #import "./pages/preface.typ": *
+
+#let preface(doc) = {
+  counter(heading).update(0)
+  set heading(
+    numbering: (..nums) => {
+      "P" + nums.pos().map(str).join("-")
+    },
+  )
+  set heading(supplement: "Preface")
+  doc
+}
+
+
+#let main(doc) = {
+  counter(heading).update(0)
+  set heading(numbering: "1-1", supplement: "Section")
+  set page(numbering: "1")
+  counter(page).update(1)
+  doc
+}
+
 
 #let narrative(
   // Title information
@@ -16,12 +38,9 @@
   scope_id: "scope_id",
   iec_61355_type: "iec_61355_type",
   doc_num: "doc_num",
-  status: "draft",
   creator: "creator",
   approver: "approver",
   owner: "owner",
-  revision: "revision",
-  extract_metadata: true,
   // Style overrides
   title_font: "Bebas Neue",
   body_font: "Roboto",
@@ -29,6 +48,11 @@
   accent_color: rgb("#0971ce"),
   doc,
 ) = {
+  let metadata = json("../metadata.json")
+  let revision = metadata.at("rev")
+  let status = metadata.at("status")
+  let issue_date = metadata.at("date")
+  let hash = metadata.at("hash")
   title_page(
     issuing_dept: issuing_dept,
     title: title,
@@ -45,13 +69,15 @@
     mono_font: mono_font,
     accent_color: accent_color,
     revision: revision,
+    issue_date: issue_date,
+    hash: hash,
   )
 
   set page(background: rotate(-45deg, text(
     size: 15em,
     "DRAFT",
     luma(230),
-  ))) if status == "draft"
+  ))) if upper(status) == "DRAFT"
 
   let full_id = (
     "=="
@@ -66,12 +92,22 @@
       + "-"
       + doc_num
   )
-  set page(numbering: "i", margin: 60pt, footer: footer(
+  let footer_instance = footer(
     doc_id: full_id,
     body_font: body_font,
     title_font: title_font,
     legal_owner: owner,
-  ))
+    revision: revision,
+    issue_date: issue_date,
+    hash: hash,
+  )
+
+  set page(
+    numbering: "i",
+    margin: 60pt,
+    footer: footer_instance,
+    header: header(title: title + ": " + document_type),
+  )
   set par(justify: true)
   set text(font: body_font)
   set underline(offset: 1.5pt)
@@ -136,13 +172,14 @@
     num + h(1em) + body
   }
 
+  show: preface
+
   preface_page(
     operational_scope: project_id,
     system_scope: scope_id,
     iec_61355_type: iec_61355_type,
     doc_num: doc_num,
   )
-
 
   doc
 }

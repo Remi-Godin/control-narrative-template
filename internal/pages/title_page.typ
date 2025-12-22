@@ -11,6 +11,7 @@
   iec_61355_type: "iec_61355_type",
   doc_num: "doc_num",
   revision: "revision",
+  hash: none,
   status: "status",
   creator: "creator",
   approver: "approver",
@@ -18,6 +19,7 @@
   accent_color: rgb("#0971ce"),
   font: "Bebas Neue",
   mono_font: "Noto Sans Mono",
+  issue_date: datetime.today().display(),
 ) = {
   let full_id = (
     "=="
@@ -52,11 +54,19 @@
       full_id,
     ))),
     entry("CREATOR", mono(font: mono_font, creator)),
-    entry("DATE OF ISSUE", mono(font: mono_font, datetime.today().display())),
+    entry("DATE OF ISSUE", mono(font: mono_font, issue_date)),
     entry("APPROVER", mono(font: mono_font, approver)),
     entry("STATUS", mono(font: mono_font, status)),
     entry("LEGAL OWNER", mono(font: mono_font, owner)),
-    entry("REVISION", mono(font: mono_font, revision)),
+    entry("REVISION", mono(
+      font: mono_font,
+      stack(
+        dir: ltr,
+        spacing: 1fr,
+        text(fill: luma(200), "" + hash),
+        revision,
+      ),
+    )),
   ))
 }
 
@@ -78,6 +88,8 @@
   creator: "creator",
   approver: "approver",
   owner: "owner",
+  issue_date: datetime.today().display(),
+  hash: none,
   // Style overrides
   font: "Bebas Neue",
   mono_font: "Noto Sans Mono",
@@ -124,6 +136,8 @@
               creator: creator,
               approver: approver,
               owner: owner,
+              issue_date: issue_date,
+              hash: hash,
             )),
           )
         }

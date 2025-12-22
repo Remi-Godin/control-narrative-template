@@ -2,20 +2,26 @@
 
 METADATA_FILE="metadata.json"
 
-# Extracting Git Data
+# 1. Get the Revision Number (Total Commit Count)
 REV_COUNT=$(git rev-list --count HEAD)
+
+# 2. Extract Commit Metadata
 GIT_HASH=$(git rev-parse --short HEAD)
 GIT_DATE=$(git log -1 --format=%as)
 AUTHOR=$(git log -1 --format='%an')
 
-# Status Logic: "Released" if the commit is tagged, else "Draft"
-if git describe --tags --exact-match >/dev/null 2>&1; then
+# 3. Status Logic: Strict Uppercase Trigger
+# Grab the full body of the latest commit message
+COMMIT_MSG=$(git log -1 --pretty=%B)
+
+# Check if the message contains the exact string "RELEASE"
+if [[ "$COMMIT_MSG" == *"RELEASE"* ]]; then
     STATUS="Released"
 else
     STATUS="Draft"
 fi
 
-# Write the JSON
+# 4. Generate the JSON file
 cat <<EOF > "$METADATA_FILE"
 {
   "rev": "$REV_COUNT",
@@ -26,4 +32,4 @@ cat <<EOF > "$METADATA_FILE"
 }
 EOF
 
-echo "Generated metadata: Rev $REV_COUNT ($STATUS)"
+echo "Metadata Updated: Rev $REV_COUNT is currently [$STATUS]"

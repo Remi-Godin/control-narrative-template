@@ -6,10 +6,13 @@
   docnum: "docnum",
   creator: "creator",
   approver: "approver",
-  date_of_issue: "date_of_issue",
+  issue_date: "issue_data",
   legal_owner: "legal_owner",
+  revision: none,
+  hash: none,
   it,
 ) = {
+  let metadata = json("../../metadata.json")
   let full_id = (
     "=" + function_id + "&" + doctype + "-" + str(docnum)
   )
@@ -34,23 +37,33 @@
     #grid(
       rows: (1fr, auto),
       box(
-        inset: 5pt,
+        inset: 10pt,
+        stroke: (top: black, left: black, right: black),
         width: 100%,
         height: 100%,
         it,
       ),
       align(right, table(
-        rows: auto,
+        rows: 4,
         columns: (auto, 1fr, 1fr),
-        table.cell(colspan: 1, rowspan: 3, align(center + horizon, image(
+        table.cell(colspan: 1, rowspan: 4, align(center + horizon, image(
           "../assets/tz.png",
           height: image_width,
         ))),
         table.cell(colspan: 2, entry("FUNCTION_ID", full_id)),
         entry("CREATOR", creator),
-        entry("DATE OF ISSUE", date_of_issue),
+        entry("DATE OF ISSUE", issue_date),
         entry("APPOVER", approver),
+        entry("STATUS", mono(metadata.at("status"))),
         entry("LEGAL OWNER", legal_owner),
+        entry("REVISION", mono(
+          stack(
+            dir: ltr,
+            spacing: 1fr,
+            text(fill: luma(200), "" + metadata.at("hash")),
+            metadata.at("rev"),
+          ),
+        )),
       )),
     )
   ]
