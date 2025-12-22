@@ -1,26 +1,27 @@
 #import "./template.typ": *
-#show: formatting
 
-#title_page(
-  // Title information
+#show: narrative.with(
   issuing_dept: "Systems Engineering Department",
   title: "Livermore Hub",
   document_type: "Control Narrative",
-  // Document info
-  project_id: "HD15",
-  scope_id: "LIVHUB",
+  project_id: "LIV",
+  scope_id: "NX102",
   iec_61355_type: "EFE",
   doc_num: "1",
-  status: "status",
+  status: "draft",
   creator: "Remi Godin",
   approver: none,
   owner: "True Zero",
-  // Style overrides
-  font: "Bebas Neue",
   accent_color: rgb("#0971ce"),
 )
 
-#outline()
+
+= Test
+
+== Test
+=== Test
+==== Test
+= Test
 
 #routine(
   landscape: true,
@@ -32,8 +33,6 @@
   legal_owner: "TrueZero",
   date_of_issue: "2025-10-02",
 )[
-  = Test
-  #lorem(50)
   == Test
   #lorem(50)
 ]
@@ -48,8 +47,7 @@
   legal_owner: "TrueZero",
   date_of_issue: "2025-10-02",
 )[
-  = Test
-  #lorem(50)
   == Test
   #lorem(50)
 ]
+

@@ -1,4 +1,4 @@
-#let mono(it) = upper(text(font: "JetBrains Mono", weight: "bold")[#it])
+#let mono(it) = upper(text(font: "DejaVu Sans", weight: "bold")[#it])
 #let routine(
   landscape: false,
   function_id: "function_id",
@@ -33,11 +33,19 @@
   )[
     #grid(
       rows: (1fr, auto),
-      box(inset: 5pt, stroke: (top: black, left: black, right: black), width: 100%, height: 100%, it),
+      box(
+        inset: 5pt,
+        width: 100%,
+        height: 100%,
+        it,
+      ),
       align(right, table(
         rows: auto,
         columns: (auto, 1fr, 1fr),
-        table.cell(colspan: 1, rowspan: 3, align(center + horizon, image("../assets/tz.png", height: image_width))),
+        table.cell(colspan: 1, rowspan: 3, align(center + horizon, image(
+          "../assets/tz.png",
+          height: image_width,
+        ))),
         table.cell(colspan: 2, entry("FUNCTION_ID", full_id)),
         entry("CREATOR", creator),
         entry("DATE OF ISSUE", date_of_issue),

@@ -1,4 +1,8 @@
-#let mono(it) = upper(text(font: "JetBrains Mono", weight: "bold")[#it])
+#let mono(color: black, font: "Noto Sans Mono", it) = upper(text(
+  font: font,
+  fill: color,
+  weight: "bold",
+)[#it])
 #let desc(it) = text(fill: luma(150))[#it]
 
 #let title_block_iso7200(
@@ -11,28 +15,55 @@
   creator: "creator",
   approver: "approver",
   owner: "owner",
+  accent_color: rgb("#0971ce"),
+  font: "Bebas Neue",
+  mono_font: "Noto Sans Mono",
 ) = {
   let full_id = (
-    "==" + project_id + "=" + scope_id + "&" + iec_61355_type + "-" + doc_num
+    "=="
+      + project_id
+      + if type(scope_id) == array {
+        for i in scope_id { "=" + i }
+      } else {
+        "=" + scope_id
+      }
+      + "&"
+      + iec_61355_type
+      + "-"
+      + doc_num
   )
 
   let entry(desc, value) = {
     set align(top)
     stack(
       spacing: 0.20em,
-      text(size: 1.0em, font: "Bebas Neue", fill: luma(150), desc),
+      text(size: 1.0em, font: font, fill: luma(150), desc),
       value,
     )
   }
-  table(
+  box(stroke: black, radius: 5pt, table(
+    stroke: (x, y) => (
+      top: if y > 0 { black },
+      left: if x > 0 { black },
+    ),
     columns: (20%, 20%),
-    table.cell(colspan: 2, entry("REFERENCE ID", mono(full_id))),
-    entry("CREATOR", mono(creator)),
-    entry("DATE OF ISSUE", mono(datetime.today().display())),
-    entry("APPROVER", mono(approver)),
-    entry("REVISION", mono(sys.inputs.at("revision", default: "DRAFT"))),
-    table.cell(colspan: 2, entry("LEGAL OWNER", mono(owner))),
-  )
+    table.cell(colspan: 2, entry("REFERENCE ID", mono(
+      font: mono_font,
+      full_id,
+    ))),
+    entry("CREATOR", mono(font: mono_font, creator)),
+    entry("DATE OF ISSUE", mono(font: mono_font, datetime.today().display())),
+    entry("APPROVER", mono(font: mono_font, approver)),
+    entry("STATUS", mono(font: mono_font, sys.inputs.at(
+      "status",
+      default: "draft",
+    ))),
+    entry("LEGAL OWNER", mono(font: mono_font, owner)),
+    entry("REVISION", mono(font: mono_font, sys.inputs.at(
+      "revision",
+      default: "DRAFT",
+    ))),
+  ))
 }
 
 /********************
@@ -55,6 +86,7 @@
   owner: "owner",
   // Style overrides
   font: "Bebas Neue",
+  mono_font: "Noto Sans Mono",
   accent_color: rgb("#0971ce"),
 ) = {
   context {
