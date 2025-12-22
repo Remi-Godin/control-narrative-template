@@ -1,22 +1,11 @@
-#let footer(
-  title_font: "Bebas Neue",
-  body_font: "Nimbus Sans",
-  mono_font: "Noto Sans Mono",
-  doc_id: "doc_id",
-  legal_owner: "legal_owner",
-  revision: "revision",
-  status: "status",
-  creator: "creator",
-  approver: "approver",
-  owner: "owner",
-  accent_color: rgb("#0971ce"),
-  issue_date: none,
-  hash: none,
-) = {
+#import "data_extractor.typ": *
+#import "common_vars.typ": *
+
+#let footer = {
   context {
     set text(size: 0.9em, fill: luma(100))
     set par(justify: false)
-    let copyright = [#legal_owner #sym.copyright #datetime.today().year()]
+    let copyright = [#owner #sym.copyright #datetime.today().year()]
 
     let left_section = {
       stack(
@@ -42,7 +31,7 @@
       stack(
         dir: ltr,
         spacing: 1fr,
-        text(size: 1em, font: mono_font, doc_id),
+        text(size: 1em, font: mono_font, full_id),
         text(size: 1em, "Revision: " + revision),
       )
     }

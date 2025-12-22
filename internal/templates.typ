@@ -6,6 +6,8 @@
 #import "footer.typ": *
 #import "header.typ": *
 #import "./pages/preface.typ": *
+#import "common_vars.typ": *
+#import "data_extractor.typ": *
 
 #let preface(doc) = {
   counter(heading).update(0)
@@ -29,49 +31,9 @@
 
 
 #let narrative(
-  // Title information
-  issuing_dept: "issuing_dept",
-  title: "title",
-  document_type: "document_type",
-  // Document info
-  project_id: "project_id",
-  scope_id: "scope_id",
-  iec_61355_type: "iec_61355_type",
-  doc_num: "doc_num",
-  creator: "creator",
-  approver: "approver",
-  owner: "owner",
-  // Style overrides
-  title_font: "Bebas Neue",
-  body_font: "Roboto",
-  mono_font: "Noto Sans Mono",
-  accent_color: rgb("#0971ce"),
   doc,
 ) = {
-  let metadata = json("../metadata.json")
-  let revision = metadata.at("rev")
-  let status = metadata.at("status")
-  let issue_date = metadata.at("date")
-  let hash = metadata.at("hash")
-  title_page(
-    issuing_dept: issuing_dept,
-    title: title,
-    document_type: document_type,
-    project_id: project_id,
-    scope_id: scope_id,
-    iec_61355_type: iec_61355_type,
-    doc_num: doc_num,
-    status: status,
-    creator: creator,
-    approver: approver,
-    owner: owner,
-    font: title_font,
-    mono_font: mono_font,
-    accent_color: accent_color,
-    revision: revision,
-    issue_date: issue_date,
-    hash: hash,
-  )
+  title_page
 
   set page(background: rotate(-45deg, text(
     size: 15em,
@@ -79,34 +41,11 @@
     luma(230),
   ))) if upper(status) == "DRAFT"
 
-  let full_id = (
-    "=="
-      + project_id
-      + if type(scope_id) == array {
-        for i in scope_id { "=" + i }
-      } else {
-        "=" + scope_id
-      }
-      + "&"
-      + iec_61355_type
-      + "-"
-      + doc_num
-  )
-  let footer_instance = footer(
-    doc_id: full_id,
-    body_font: body_font,
-    title_font: title_font,
-    legal_owner: owner,
-    revision: revision,
-    issue_date: issue_date,
-    hash: hash,
-  )
-
   set page(
     numbering: "i",
     margin: 60pt,
-    footer: footer_instance,
-    header: header(title: title + ": " + document_type),
+    footer: footer,
+    header: header,
   )
   set par(justify: true)
   set text(font: body_font)
@@ -125,24 +64,10 @@
   }
   outline(title: none)
 
-  show heading.where(level: 1): it => heading_rule_1(
-    accent_color: accent_color,
-    title_font: title_font,
-    it,
-  )
-  show heading.where(level: 2): it => heading_rule_2(
-    accent_color: accent_color,
-    title_font: title_font,
-    it,
-  )
-  show heading.where(level: 3): it => heading_rule_3(
-    accent_color: accent_color,
-    it,
-  )
-  show heading.where(level: 4): it => heading_rule_4(
-    accent_color: accent_color,
-    it,
-  )
+  show heading.where(level: 1): it => heading_rule_1(it)
+  show heading.where(level: 2): it => heading_rule_2(it)
+  show heading.where(level: 3): it => heading_rule_3(it)
+  show heading.where(level: 4): it => heading_rule_4(it)
 
   show raw.line: it => {
     set text(fill: orange.darken(10%)) if it
@@ -174,12 +99,7 @@
 
   show: preface
 
-  preface_page(
-    operational_scope: project_id,
-    system_scope: scope_id,
-    iec_61355_type: iec_61355_type,
-    doc_num: doc_num,
-  )
+  preface_page
 
   doc
 }

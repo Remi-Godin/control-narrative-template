@@ -1,6 +1,5 @@
-#let header(
-  title: "title",
-) = context {
+#import "data_extractor.typ": *
+#let header = context {
   set text(fill: luma(100))
   let q1 = query(selector(heading.where(level: 1)))
   let pages = q1.map(q => { q.location().page() })

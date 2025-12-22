@@ -1,4 +1,5 @@
-#let mono(it) = upper(text(font: "DejaVu Sans", weight: "bold")[#it])
+#import "../common_vars.typ": *
+#let mono(it) = upper(text(font: mono_font, weight: "bold")[#it])
 #let routine(
   landscape: false,
   function_id: "function_id",
@@ -20,7 +21,7 @@
   let entry(desc, value) = {
     stack(
       spacing: 0.20em,
-      text(size: 0.8em, font: "Bebas Neue", fill: luma(150), desc),
+      text(size: 0.8em, font: title_font, fill: luma(150), desc),
       text(size: 0.8em, mono(value)),
     )
   }

@@ -1,6 +1,5 @@
+#import "../common_vars.typ": *
 #let heading_rule_1(
-  title_font: "Bebas Neue",
-  accent_color: rgb("#0971ce"),
   it,
 ) = {
   pagebreak()

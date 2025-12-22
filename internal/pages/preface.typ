@@ -1,4 +1,7 @@
-#let mono(it) = upper(text(font: "DejaVu Sans", weight: "bold")[#it])
+#import "../data_extractor.typ": *
+#import "../common_vars.typ": *
+
+#let mono(it) = upper(text(font: mono_font, weight: "bold")[#it])
 #let id_legend(
   operational_scope: none,
   system_scope: none,
@@ -43,12 +46,7 @@
   v(1em)
 }
 
-#let preface_page(
-  operational_scope: none,
-  system_scope: none,
-  iec_61355_type: none,
-  doc_num: none,
-) = {
+#let preface_page = {
   [
     #show table.cell: it => {
       set align(left) if it.x > 0 and it.y > 0

@@ -1,18 +1,6 @@
 #import "./template.typ": *
 
-#show: narrative.with(
-  issuing_dept: "Systems Engineering Department",
-  title: "Livermore Hub",
-  document_type: "Control Narrative",
-  project_id: "LIV",
-  scope_id: "NX102",
-  iec_61355_type: "EFE",
-  doc_num: "1",
-  creator: "Remi Godin",
-  approver: none,
-  owner: "True Zero",
-  accent_color: rgb("#0971ce"),
-)
+#show: narrative
 
 
 #show: main

@@ -1,102 +1,14 @@
-#let mono(color: black, font: "Noto Sans Mono", it) = upper(text(
-  font: font,
-  fill: color,
-  weight: "bold",
-)[#it])
-#let desc(it) = text(fill: luma(150))[#it]
 
-#let title_block_iso7200(
-  project_id: "project_id",
-  scope_id: "scope_id",
-  iec_61355_type: "iec_61355_type",
-  doc_num: "doc_num",
-  revision: "revision",
-  hash: none,
-  status: "status",
-  creator: "creator",
-  approver: "approver",
-  owner: "owner",
-  accent_color: rgb("#0971ce"),
-  font: "Bebas Neue",
-  mono_font: "Noto Sans Mono",
-  issue_date: datetime.today().display(),
-) = {
-  let full_id = (
-    "=="
-      + project_id
-      + if type(scope_id) == array {
-        for i in scope_id { "=" + i }
-      } else {
-        "=" + scope_id
-      }
-      + "&"
-      + iec_61355_type
-      + "-"
-      + doc_num
-  )
-
-  let entry(desc, value) = {
-    set align(top)
-    stack(
-      spacing: 0.20em,
-      text(size: 1.0em, font: font, fill: luma(150), desc),
-      value,
-    )
-  }
-  box(stroke: black, radius: 5pt, table(
-    stroke: (x, y) => (
-      top: if y > 0 { black },
-      left: if x > 0 { black },
-    ),
-    columns: (20%, 20%),
-    table.cell(colspan: 2, entry("REFERENCE ID", mono(
-      font: mono_font,
-      full_id,
-    ))),
-    entry("CREATOR", mono(font: mono_font, creator)),
-    entry("DATE OF ISSUE", mono(font: mono_font, issue_date)),
-    entry("APPROVER", mono(font: mono_font, approver)),
-    entry("STATUS", mono(font: mono_font, status)),
-    entry("LEGAL OWNER", mono(font: mono_font, owner)),
-    entry("REVISION", mono(
-      font: mono_font,
-      stack(
-        dir: ltr,
-        spacing: 1fr,
-        text(fill: luma(200), "" + hash),
-        revision,
-      ),
-    )),
-  ))
-}
 
 /********************
     TITLE PAGE
 *********************/
-#let title_page(
-  // Title information
-  issuing_dept: "issuing_dept",
-  title: "title",
-  document_type: "document_type",
-  // Document info
-  project_id: "project_id",
-  scope_id: "scope_id",
-  iec_61355_type: "iec_61355_type",
-  doc_num: "doc_num",
-  revision: "revision",
-  status: "status",
-  creator: "creator",
-  approver: "approver",
-  owner: "owner",
-  issue_date: datetime.today().display(),
-  hash: none,
-  // Style overrides
-  font: "Bebas Neue",
-  mono_font: "Noto Sans Mono",
-  accent_color: rgb("#0971ce"),
-) = {
+#import "../common_vars.typ": *
+#import "../data_extractor.typ": *
+#import "../title_blocks.typ": *
+#let title_page = {
   context {
-    set text(font: "Bebas Neue")
+    set text(font: title_font)
     set par(leading: 0.2em)
     page(
       background: align(top, box(fill: accent_color, width: 100%, height: 20%)),
@@ -126,19 +38,7 @@
             v(.5em),
             text(size: 3em, document_type),
             1fr,
-            align(bottom + right, title_block_iso7200(
-              project_id: project_id,
-              scope_id: scope_id,
-              iec_61355_type: iec_61355_type,
-              doc_num: doc_num,
-              revision: revision,
-              status: status,
-              creator: creator,
-              approver: approver,
-              owner: owner,
-              issue_date: issue_date,
-              hash: hash,
-            )),
+            align(bottom + right, title_block_iso7200),
           )
         }
 
