@@ -13,6 +13,7 @@
   approver: none,
   owner: "True Zero",
   accent_color: rgb("#0971ce"),
+  revision: "1.2",
 )
 
 

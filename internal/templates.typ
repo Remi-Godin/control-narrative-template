@@ -20,6 +20,8 @@
   creator: "creator",
   approver: "approver",
   owner: "owner",
+  revision: "revision",
+  extract_metadata: true,
   // Style overrides
   title_font: "Bebas Neue",
   body_font: "Roboto",
@@ -42,6 +44,7 @@
     font: title_font,
     mono_font: mono_font,
     accent_color: accent_color,
+    revision: revision,
   )
 
   set page(background: rotate(-45deg, text(

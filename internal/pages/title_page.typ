@@ -54,15 +54,9 @@
     entry("CREATOR", mono(font: mono_font, creator)),
     entry("DATE OF ISSUE", mono(font: mono_font, datetime.today().display())),
     entry("APPROVER", mono(font: mono_font, approver)),
-    entry("STATUS", mono(font: mono_font, sys.inputs.at(
-      "status",
-      default: "draft",
-    ))),
+    entry("STATUS", mono(font: mono_font, status)),
     entry("LEGAL OWNER", mono(font: mono_font, owner)),
-    entry("REVISION", mono(font: mono_font, sys.inputs.at(
-      "revision",
-      default: "DRAFT",
-    ))),
+    entry("REVISION", mono(font: mono_font, revision)),
   ))
 }
 
