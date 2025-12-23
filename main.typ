@@ -19,12 +19,12 @@
 ]
 
 #routine(
-  function_scope: "NIKK",
+  routine_name: "Bosch auto-fill sequence 7",
+  function_scope: "BOSCH",
   iec_61355_type: "EFF",
   creator: "Remi Godin",
   approver: none,
 )[
-  == Test
-  #lorem(50)
+
 ]
 

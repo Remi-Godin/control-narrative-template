@@ -3,6 +3,7 @@
 #let mono(it) = upper(text(font: mono_font, weight: "bold")[#it])
 #let routine(
   landscape: false,
+  routine_name: "routine_name",
   function_scope: "function_scope",
   iec_61355_type: "iec_61355_type",
   doc_num: 1,
@@ -31,16 +32,14 @@
       + str(doc_num),
   )
 
-  // let image_height = if landscape {
-  //   17.4%
-  // } else {
-  //   11.8%
-  // }
   page(
     flipped: landscape,
     margin: 40pt,
   )[
 
+    #show heading.where(level: 2): it => {
+      text(size: 0.8em, it.body)
+    }
     #figure(grid(
       rows: (1fr, auto),
       box(
@@ -58,7 +57,11 @@
           "../assets/tz.png",
           height: 8em,
         ))),
-        table.cell(colspan: 2, align(right, entry("FUNCTION_ID", function_id))),
+        table.cell(colspan: 1, align(right, entry(
+          "ROUTINE NAME",
+          heading(level: 2, routine_name),
+        ))),
+        table.cell(colspan: 1, align(right, entry("FUNCTION ID", function_id))),
         entry("CREATOR", creator),
         entry("DATE OF ISSUE", issue_date),
         entry("APPOVER", approver),
@@ -73,6 +76,6 @@
           ),
         )),
       )),
-    )) #label(function_id)//.replace("=", "").replace("&", ""))
+    )) #label(function_id)
   ]
 }
