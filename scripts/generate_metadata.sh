@@ -1,35 +1,48 @@
 #!/bin/bash
 
-METADATA_FILE="metadata.json"
+# 1. Get the latest tag name
+# If no tags exist, we set this to a "Virtual Zero"
+LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
+HAS_TAGS=$? # 0 if success, non-zero if no tags
 
-# 1. Get the Revision Number (Total Commit Count)
-REV_COUNT=$(git rev-list --count HEAD)
+# 2. Get the total commit count
+TOTAL_COMMITS=$(git rev-list --count HEAD)
 
-# 2. Extract Commit Metadata
-GIT_HASH=$(git rev-parse --short HEAD)
-GIT_DATE=$(git log -1 --format=%as)
-AUTHOR=$(git log -1 --format='%an')
+# 3. Check if the current commit has a tag pointing at it
+CURRENT_TAG=$(git tag --points-at HEAD)
 
-# 3. Status Logic: Strict Uppercase Trigger
-# Grab the full body of the latest commit message
-COMMIT_MSG=$(git log -1 --pretty=%B)
-
-# Check if the message contains the exact string "RELEASE"
-if [[ "$COMMIT_MSG" == *"RELEASE"* ]]; then
-    STATUS="Released"
+# 4. Handle Commits Since Tag logic
+if [ $HAS_TAGS -eq 0 ]; then
+    # Tags exist, do a range count
+    COMMITS_SINCE_TAG=$(git rev-list "${LATEST_TAG}..HEAD" --count)
+    DISPLAY_TAG="$LATEST_TAG"
 else
-    STATUS="Draft"
+    # No tags exist yet, the "since" count is just the total count
+    COMMITS_SINCE_TAG=$TOTAL_COMMITS
+    DISPLAY_TAG="v0.0"
 fi
 
-# 4. Generate the JSON file
-cat <<EOF > "$METADATA_FILE"
+# 5. Determine Status and Version String
+if [ -n "$CURRENT_TAG" ]; then
+    STATUS="RELEASED"
+    VERSION="$CURRENT_TAG"
+    REVISION_LABEL="$CURRENT_TAG"
+else
+    STATUS="DRAFT"
+    VERSION="$DISPLAY_TAG (+$COMMITS_SINCE_TAG)"
+    REVISION_LABEL="Draft after $DISPLAY_TAG"
+fi
+
+# 6. Output for Typst
+cat <<EOF
 {
-  "rev": "$REV_COUNT",
-  "hash": "$GIT_HASH",
-  "date": "$GIT_DATE",
-  "author": "$AUTHOR",
-  "status": "$STATUS"
+  "formal_rev": "$DISPLAY_TAG",
+  "build_count": "$TOTAL_COMMITS",
+  "commits_since_tag": "$COMMITS_SINCE_TAG",
+  "status": "$STATUS",
+  "version_string": "$VERSION",
+  "revision_label": "$REVISION_LABEL",
+  "short_sha": "$(git rev-parse --short HEAD 2>/dev/null || echo "0000000")",
+  "date": "$(date +'%Y-%m-%d')"
 }
 EOF
-
-echo "Metadata Updated: Rev $REV_COUNT is currently [$STATUS]"

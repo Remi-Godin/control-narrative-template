@@ -109,7 +109,7 @@
 
     = Document Control
     == Revision control
-    This document designed to be versionned control using git through a single branch. The revision number reflects the number of commits preceding the release of the document. The build hash identifies from which commit this document was compiled from, and also provides a secondary reference to ensure that revision number and build hash are a match.
+    This document is versionned controlled using git. The revision number is automatically generated based on the counts of commits prior to the compilation of the document.
 
     == Document Status
     There are two status: Draft, and Released. Documents with the Draft status MUST NOT be used for final logic implementation.
