@@ -40,6 +40,7 @@ This document defines the following scopes:
   issue_date: "2025-10-02",
 )[
   == Test
+  === Test
   #lorem(50)
 ]
 
