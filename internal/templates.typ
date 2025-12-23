@@ -87,6 +87,21 @@
     number-align: left,
   )
 
+  set table(fill: (x, y) => {
+    if y == 0 {
+      accent_color
+    }
+  })
+
+  show table.cell: it => {
+    if it.y == 0 {
+      set text(white)
+      align(center, strong(it))
+    } else {
+      it
+    }
+  }
+
   set footnote(numbering: " [1]")
   show footnote.entry: it => {
     let num = numbering(
