@@ -60,14 +60,15 @@
     The IEC 81345 standard provides a structure to create identifiers using aspects.
     #figure(caption: "IEC 81345 aspects.", table(
       columns: (1fr, 4fr),
+      align: (x, y) => if x == 0 or y == 0 { center } else { left },
       table.header(strong("Aspect"), strong("Description")),
-      "==", "Functional (High level).",
-      "=", "Functional.",
-      "&", "Document kind.",
-      "+", "Location.",
-      "-", "Product.",
-      "#", "Number.",
-      "%", "Type.",
+      strong("=="), "Functional (High level).",
+      strong("="), "Functional.",
+      strong("&"), "Document kind.",
+      strong("+"), "Location.",
+      strong("-"), "Product.",
+      strong("#"), "Number.",
+      strong("%"), "Type.",
     ))
     This documents is identified using the following scheme:
     #figure(caption: "Document reference ID description", id_legend(
@@ -84,13 +85,14 @@
       caption: "Non-exhaustive lists of document types used within this document.",
       table(
         columns: (1fr, 4fr),
+        align: (x, y) => if x == 0 or y == 0 { center } else { left },
         table.header(strong("Code"), strong("Description")),
-        "EFE", "Function descriptions.",
-        "EFA", "Functional overview diagrams.",
-        "EFF", "Function diagrams.",
-        "EFB", "Flow diagrams.",
-        "EFP", "Signal list.",
-        "EFQ", "Setting list.",
+        strong("EFE"), "Function descriptions.",
+        strong("EFA"), "Functional overview diagrams.",
+        strong("EFF"), "Function diagrams.",
+        strong("EFB"), "Flow diagrams.",
+        strong("EFP"), "Signal list.",
+        strong("EFQ"), "Setting list.",
       ),
     )
 
@@ -106,17 +108,19 @@
     "OPTIONAL" in this document are to be interpreted as described in #link("https://www.rfc-editor.org/rfc/rfc2119", text(fill: blue, "RFC 2119")).
 
     = Document Control
-    == Revision control
-    This document is versionned controlled using git. The revision number is automatically generated based on the counts of commits prior to the compilation of the document.
-
-    === Revision Lockstep
-    All documents nested within this documents will use the same revision number as the overall document.
-
     == Document Status
     There are two status: Draft, and Released. Documents with the Draft status MUST NOT be used for final logic implementation.
 
+    == Revision control
+    === Revision Schema<revision_schema>
+    The document revision number follows a `<major>.<minor>` scheme, where a major revision change indicates a change in narrative logic, while minor revision changes indicates small corrections such as formatting issues, diagram cleanup, and typos.
+    === Draft Changes
+    When the document status is "Draft", the revision number will be accompanied with a diff count, such as "`1.8 (+8)`". In this example, this indicate that the current draft has 8 changes recorded since version 1.8 was released. Once ready for release, the version will be incremented according to the @revision_schema.
+    === Revision Lockstep
+    All documents nested within this documents will use the same revision number as the overall document.
+
     == Build hash and revision mismatch
-    In the event that a build hash and revision number mismatch between two compiled document instances, i.e. two documents have the same revision number but different build hash, or vice versa, then contact the document creator, approver, or legal owner.
+    This document has a build hash on the title page, to the left of the revision number, and in the footer of each subsequent pages. In the event that a build hash and revision number mismatch between two compiled document instances, i.e. two documents have the same revision number but different build hash, or vice versa, then contact the document creator, approver, or legal owner.
 
     #if scopes != none [
       = IEC 81345 Scope Definitions
