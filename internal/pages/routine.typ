@@ -1,12 +1,12 @@
 #import "../common_vars.typ": *
 #import "../data_extractor.typ": *
 #let mono(it) = upper(text(font: mono_font, weight: "bold")[#it])
-#let routine(
+#let sheet(
   landscape: false,
-  routine_name: "routine_name",
+  name: "sheet_name",
   function_scope: "function_scope",
   iec_61355_type: "iec_61355_type",
-  doc_num: 1,
+  product: "1",
   creator: "creator",
   approver: "approver",
   it,
@@ -20,16 +20,19 @@
   }
 
   let function_id = str(
-    "="
+    "=="
+      + operational_scope
+      + "="
+      + system_scope
       + if type(function_scope) == array {
-        function_scope.join("=")
+        "=" + function_scope.join("=")
       } else {
         function_scope
       }
       + "&"
       + iec_61355_type
       + "-"
-      + str(doc_num),
+      + product,
   )
 
   page(
@@ -52,14 +55,14 @@
       align(right, table(
         fill: none,
         rows: 4,
-        columns: (auto, 1fr, 1fr),
+        columns: (auto, 3fr, 2fr),
         table.cell(colspan: 1, rowspan: 4, align(center + horizon, image(
           "../assets/tz.png",
           height: 8em,
         ))),
         table.cell(colspan: 1, align(right, entry(
-          "ROUTINE NAME",
-          heading(level: 2, routine_name),
+          "SHEET NAME",
+          heading(level: 2, name),
         ))),
         table.cell(colspan: 1, align(right, entry("FUNCTION ID", function_id))),
         entry("CREATOR", creator),

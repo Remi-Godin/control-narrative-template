@@ -81,7 +81,9 @@
   }
 
   show ref: it => {
-    if it.element.func() == heading {
+    if it.element == none { text(fill: red, "ERROR") } else if (
+      it.element.func() == heading
+    ) {
       underline(link(it.location(), it.element.body))
     } else {
       underline(link(it.location(), str(it.element.label)))

@@ -4,22 +4,21 @@
 
 
 = Operations Routines <here>
-#ref(label("=EBAR&EFF-1"))
-@here
+#ref(label("==LIV=CTRL&EFA-DES1"))
 
-#routine(
-  function_scope: "EBAR",
-  iec_61355_type: "EFF",
+#sheet(
+  name: "Livermore system overview",
+  function_scope: none,
+  iec_61355_type: "EFA",
   creator: "Remi Godin",
+  product: "DES1",
   approver: none,
-  landscape: true,
 )[
-  == Test
-  === Test
+  #set align(center + horizon)
+  #image("./system_layout.svg")
 ]
 
-#routine(
-  routine_name: "Bosch auto-fill sequence 7",
+#sheet(
   function_scope: "BOSCH",
   iec_61355_type: "EFF",
   creator: "Remi Godin",

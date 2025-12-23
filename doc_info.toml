@@ -18,8 +18,12 @@ name = "=CTRL"
 desc = "This scope refers to the overall control of the site, and includes all systems and sub-systems."
 
 [[scope]]
+name = "=DB"
+desc = "This scope refers to main FEF database."
+
+[[scope]]
 name = "=FEF"
-desc = "This scope includes all balance-of-plant items that are controlled by FEF."
+desc = "This scope includes all operations from the NX102 PLC, and all balance-of-plant items that are controlled by FEF."
 
 [[scope]]
 name = "=BOSCH"
@@ -48,6 +52,10 @@ desc = "Defines a control narrative."
 [[product]]
 name = "-SEQ"
 desc = "Defines a sequence of operation."
+
+[[product]]
+name = "-DES"
+desc = "Defines a system design."
 
 [[product]]
 name = "-SPEC"
