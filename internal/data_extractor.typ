@@ -25,7 +25,7 @@
 #let metadata = json("../metadata.json")
 #let status = metadata.status
 #let issue_date = metadata.date
-#let hash = metadata.short_sha
+#let hash = upper(metadata.short_sha)
 #let changes = metadata.commits_since_tag
 #let revision = {
   if status == "DRAFT" {

@@ -120,7 +120,7 @@
     All documents nested within this documents will use the same revision number as the overall document.
 
     == Build hash and revision mismatch
-    This document has a build hash on the title page, to the left of the revision number, and in the footer of each subsequent pages. In the event that a build hash and revision number mismatch between two compiled document instances, i.e. two documents have the same revision number but different build hash, or vice versa, then contact the document creator, approver, or legal owner.
+    This document has a build hash on the title page to the left of the revision number, and in the footer of each subsequent pages. In the event that a build hash and revision number mismatch between two compiled document instances, i.e. two documents have the same revision number but different build hash, or vice versa, then contact the document creator, approver, or legal owner.
 
     #if scopes != none [
       = IEC 81345 Scope Definitions

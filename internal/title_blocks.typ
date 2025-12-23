@@ -52,7 +52,7 @@
       stack(
         dir: ltr,
         spacing: 1fr,
-        text(fill: luma(200), "" + hash),
+        align(bottom, text(size: 0.75em, fill: luma(200), "" + hash)),
         revision,
       ),
     )),
