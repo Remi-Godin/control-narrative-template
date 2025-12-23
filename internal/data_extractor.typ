@@ -1,19 +1,39 @@
+// Document info
 #let doc_info = toml("../doc_info.toml")
-#let title = doc_info.at("title")
-#let document_type = doc_info.at("document_type")
-#let operational_scope = doc_info.at("operational_scope")
-#let system_scope = doc_info.at("system_scope")
-#let iec_61355_type = doc_info.at("iec_61355_type")
-#let doc_num = doc_info.at("doc_num")
-#let creator = doc_info.at("creator")
-#let approver = doc_info.at("approver")
-#let owner = doc_info.at("owner")
-#let issuing_dept = doc_info.at("issuing_dept")
+#let title = doc_info.title
+#let document_type = doc_info.document_type
+#let operational_scope = doc_info.operational_scope
+#let system_scope = doc_info.system_scope
+#let iec_61355_type = doc_info.iec_61355_type
+#let doc_num = doc_info.doc_num
+#let creator = doc_info.creator
+#let approver = doc_info.approver
+#let owner = doc_info.owner
+#let issuing_dept = doc_info.issuing_dept
+#let scopes = if doc_info.keys().contains("scope") {
+  doc_info.scope
+} else {
+  none
+}
+#let products = if doc_info.keys().contains("product") {
+  doc_info.product
+} else {
+  none
+}
+
+// Metadata
 #let metadata = json("../metadata.json")
-#let revision = metadata.at("rev")
-#let status = metadata.at("status")
-#let issue_date = metadata.at("date")
-#let hash = metadata.at("hash")
+#let status = metadata.status
+#let issue_date = metadata.date
+#let hash = metadata.short_sha
+#let changes = metadata.commits_since_tag
+#let revision = {
+  if status == "DRAFT" {
+    metadata.formal_rev + "(+" + changes + ")"
+  } else {
+    metadata.formal_rev
+  }
+}
 
 #let full_id = (
   "=="

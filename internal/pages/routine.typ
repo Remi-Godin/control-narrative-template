@@ -1,41 +1,47 @@
 #import "../common_vars.typ": *
+#import "../data_extractor.typ": *
 #let mono(it) = upper(text(font: mono_font, weight: "bold")[#it])
 #let routine(
   landscape: false,
-  function_id: "function_id",
-  doctype: "doctype",
-  docnum: "docnum",
+  function_scope: "function_scope",
+  iec_61355_type: "iec_61355_type",
+  doc_num: 1,
   creator: "creator",
   approver: "approver",
-  issue_date: "issue_data",
-  legal_owner: "legal_owner",
-  revision: none,
-  hash: none,
   it,
 ) = {
-  let metadata = json("../../metadata.json")
-  let full_id = (
-    "=" + function_id + "&" + doctype + "-" + str(docnum)
-  )
-
   let entry(desc, value) = {
     stack(
       spacing: 0.20em,
       text(size: 0.8em, font: title_font, fill: luma(150), desc),
-      text(size: 0.8em, mono(value)),
+      text(size: 0.8em, fill: black, mono(value)),
     )
   }
 
-  let image_width = if landscape {
-    12.7%
-  } else {
-    8.4%
-  }
+  let function_id = str(
+    "="
+      + if type(function_scope) == array {
+        function_scope.join("=")
+      } else {
+        function_scope
+      }
+      + "&"
+      + iec_61355_type
+      + "-"
+      + str(doc_num),
+  )
+
+  // let image_height = if landscape {
+  //   17.4%
+  // } else {
+  //   11.8%
+  // }
   page(
     flipped: landscape,
     margin: 40pt,
   )[
-    #grid(
+
+    #figure(grid(
       rows: (1fr, auto),
       box(
         inset: 10pt,
@@ -45,27 +51,28 @@
         it,
       ),
       align(right, table(
+        fill: none,
         rows: 4,
         columns: (auto, 1fr, 1fr),
         table.cell(colspan: 1, rowspan: 4, align(center + horizon, image(
           "../assets/tz.png",
-          height: image_width,
+          height: 8em,
         ))),
-        table.cell(colspan: 2, entry("FUNCTION_ID", full_id)),
+        table.cell(colspan: 2, align(right, entry("FUNCTION_ID", function_id))),
         entry("CREATOR", creator),
         entry("DATE OF ISSUE", issue_date),
         entry("APPOVER", approver),
-        entry("STATUS", mono(metadata.at("status"))),
-        entry("LEGAL OWNER", legal_owner),
+        entry("STATUS", mono(status)),
+        entry("LEGAL OWNER", owner),
         entry("REVISION", mono(
           stack(
             dir: ltr,
             spacing: 1fr,
-            text(fill: luma(200), "" + metadata.at("hash")),
-            metadata.at("rev"),
+            text(fill: luma(200), "" + hash),
+            revision,
           ),
         )),
       )),
-    )
+    )) #label(function_id)//.replace("=", "").replace("&", ""))
   ]
 }

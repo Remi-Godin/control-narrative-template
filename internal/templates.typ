@@ -53,14 +53,17 @@
   set heading(numbering: "1-1-1-A-I")
 
   show figure: it => {
+    set align(left)
     box(
-      inset: 1em,
       width: 100%,
       it.body,
     )
-    v(-0.8em)
-    emph(it.caption)
-    v(0.2em)
+    set align(center)
+    if it.caption != none {
+      v(-0.8em)
+      emph(it.caption)
+      v(0.2em)
+    }
   }
   outline(title: none)
 
@@ -76,6 +79,16 @@
       .starts-with("x")
     it
   }
+
+  show ref: it => {
+    if it.element.func() == heading {
+      underline(link(it.location(), it.element.body))
+    } else {
+      underline(link(it.location(), str(it.element.label)))
+    }
+  }
+
+
   set list(
     indent: 20pt,
     body-indent: 10pt,
@@ -102,6 +115,7 @@
     }
   }
 
+
   set footnote(numbering: " [1]")
   show footnote.entry: it => {
     let num = numbering(
@@ -113,8 +127,8 @@
   }
 
   show: preface
-
   preface_page
 
+  show: main
   doc
 }

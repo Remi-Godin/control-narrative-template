@@ -4,7 +4,51 @@ issuing_dept = "Systems Engineering Department"
 operational_scope = "LIV"
 system_scope = "CTRL"
 iec_61355_type = "EFE"
-doc_num = "1"
+doc_num = "CN1"
 creator= "Remi Godin"
 approver= ""
 owner= "True Zero"
+
+[[scope]]
+name = "==LIV"
+desc = "The Livermore HUB site. Includes the fueling operations and testing operations. When referencing this scope, this covers the station as a whole."
+
+[[scope]]
+name = "=CTRL"
+desc = "This scope refers to the overall control of the site, and includes all systems and sub-systems."
+
+[[scope]]
+name = "=FEF"
+desc = "This scope includes all balance-of-plant items that are controlled by FEF."
+
+[[scope]]
+name = "=BOSCH"
+desc = "This scope includes all Bosch items."
+
+[[scope]]
+name = "=MHI"
+desc = "This scope includes all MHI items."
+
+[[scope]]
+name = "=EBARA"
+desc = "This scope includes all Ebara items."
+
+[[scope]]
+name = "=NIKK"
+desc = "This scope includes all Nikkiso items."
+
+[[scope]]
+name = "=TMS"
+desc = "This scope includes all thermal management items."
+
+[[product]]
+name = "-CN"
+desc = "Defines a control narrative."
+
+[[product]]
+name = "-SEQ"
+desc = "Defines a sequence of operation."
+
+[[product]]
+name = "-SPEC"
+desc = "Defines a specification, framework, or other abstraction."

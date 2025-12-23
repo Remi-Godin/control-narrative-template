@@ -39,7 +39,7 @@
     none, none, none, none,
 
     none, align(left, "IEC 61355 Type"), none, none, none, none, none, none,
-    none, align(left, "Document Number"), none, none, none, none, none,
+    none, align(left, "Product Type & Number"), none, none, none, none, none,
 
     none, none,
   )
@@ -52,13 +52,11 @@
       set align(left) if it.x > 0 and it.y > 0
       it
     }
-    = Preface
-
-    == Standards
+    = Standards
     This document attempts to follow the following standards:
 
 
-    === IEC 81345
+    == IEC 81345
     The IEC 81345 standard provides a structure to create identifiers using aspects.
     #figure(caption: "IEC 81345 aspects.", table(
       columns: (1fr, 4fr),
@@ -79,7 +77,7 @@
       doc_num: doc_num,
     ))
     Sequences and routines will use a similar format.
-    === IEC 61355
+    == IEC 61355
     The #link("https://en.wikipedia.org/wiki/IEC_61355", text(fill: blue, "IEC 61355")) standard provides categorization for document types. Among others, the following types may be used within this document:
 
     #figure(
@@ -96,13 +94,13 @@
       ),
     )
 
-    === ISO 7200
+    == ISO 7200
     The ISO 7200 document provides guidelines on title blocks of document.
 
-    ==== Notice of non-compliance
+    === Notice of non-compliance
     This document does not aim to be fully compliant with ISO 7200. Efforts will be made to include the necessary information as defined by the standard, but this document does not aim to comply with any formatting constraints.
 
-    === RFC 2119
+    == RFC 2119
     The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
     NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
     "OPTIONAL" in this document are to be interpreted as described in #link("https://www.rfc-editor.org/rfc/rfc2119", text(fill: blue, "RFC 2119")).
@@ -111,11 +109,49 @@
     == Revision control
     This document is versionned controlled using git. The revision number is automatically generated based on the counts of commits prior to the compilation of the document.
 
+    === Revision Lockstep
+    All documents nested within this documents will use the same revision number as the overall document.
+
     == Document Status
     There are two status: Draft, and Released. Documents with the Draft status MUST NOT be used for final logic implementation.
 
     == Build hash and revision mismatch
     In the event that a build hash and revision number mismatch between two compiled document instances, i.e. two documents have the same revision number but different build hash, or vice versa, then contact the document creator, approver, or legal owner.
+
+    #if scopes != none [
+      = IEC 81345 Scope Definitions
+      == Summary
+      This document defines the following scopes:
+
+
+      #figure(
+        table(
+          columns: (1fr, 4fr),
+          align: (x, y) => { if x == 0 { center + horizon } else { left } },
+          table.header(strong("Functional Scope"), strong("Description")),
+          ..scopes.map(item => (strong(mono(item.name)), item.desc)).flatten(),
+        ),
+        caption: "List of scopes defined in this document.",
+      )
+    ]
+
+    #if products != none [
+      = IEC 81345 Product Definitions
+      == Summary
+      This document defines the following products:
+
+      #figure(
+        table(
+          columns: (1fr, 4fr),
+          align: (x, y) => { if x == 0 { center + horizon } else { left } },
+          table.header(strong("Product"), strong("Description")),
+          ..products
+            .map(item => (strong(mono(item.name)), item.desc))
+            .flatten(),
+        ),
+        caption: "List of products defined in this document.",
+      )
+    ]
 
   ]
 }
