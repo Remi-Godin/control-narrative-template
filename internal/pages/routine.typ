@@ -26,8 +26,8 @@
       + system_scope
       + if type(function_scope) == array {
         "=" + function_scope.join("=")
-      } else {
-        function_scope
+      } else if function_scope != none {
+        "=" + function_scope
       }
       + "&"
       + iec_61355_type
@@ -35,11 +35,41 @@
       + product,
   )
 
+  let info_table = align(right, table(
+    fill: none,
+    rows: 4,
+    columns: (auto, 3fr, 2fr),
+    table.cell(colspan: 1, rowspan: 4, align(center + horizon, image(
+      "../assets/tz.png",
+      height: 8em,
+    ))),
+    table.cell(colspan: 1, align(right, entry(
+      "SHEET NAME",
+      name,
+    ))),
+    table.cell(colspan: 1, align(right, entry("FUNCTION ID", function_id))),
+    entry("CREATOR", creator),
+    entry("DATE OF ISSUE", issue_date),
+    entry("APPOVER", approver),
+    entry("STATUS", mono(status)),
+    entry("LEGAL OWNER", owner),
+    entry("REVISION", mono(
+      stack(
+        dir: ltr,
+        spacing: 1fr,
+        text(fill: luma(200), "" + hash),
+        revision,
+      ),
+    )),
+  ))
+
   page(
     flipped: landscape,
     margin: 40pt,
   )[
-
+    #block(height: 0pt, below: 0pt)[
+      #hide(heading(level: 2, name))
+    ]
     #show heading.where(level: 2): it => {
       text(size: 0.8em, it.body)
     }
@@ -52,33 +82,7 @@
         height: 100%,
         it,
       ),
-      align(right, table(
-        fill: none,
-        rows: 4,
-        columns: (auto, 3fr, 2fr),
-        table.cell(colspan: 1, rowspan: 4, align(center + horizon, image(
-          "../assets/tz.png",
-          height: 8em,
-        ))),
-        table.cell(colspan: 1, align(right, entry(
-          "SHEET NAME",
-          heading(level: 2, name),
-        ))),
-        table.cell(colspan: 1, align(right, entry("FUNCTION ID", function_id))),
-        entry("CREATOR", creator),
-        entry("DATE OF ISSUE", issue_date),
-        entry("APPOVER", approver),
-        entry("STATUS", mono(status)),
-        entry("LEGAL OWNER", owner),
-        entry("REVISION", mono(
-          stack(
-            dir: ltr,
-            spacing: 1fr,
-            text(fill: luma(200), "" + hash),
-            revision,
-          ),
-        )),
-      )),
+      info_table,
     )) #label(function_id)
   ]
 }
