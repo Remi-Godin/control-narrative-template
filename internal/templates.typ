@@ -33,9 +33,6 @@
   doc
 }
 
-
-
-
 #let narrative(
   doc,
 ) = {
@@ -72,6 +69,18 @@
       v(0.2em)
     }
   }
+  show outline.entry: it => {
+    if it.level == 1 {
+      set text(size: 1.3em, weight: "bold", fill: accent_color)
+      block(sticky: true, v(0.7em) + it)
+    } else if it.level == 2 {
+      set text(size: 1.0em, weight: "bold")
+      it
+    } else {
+      it
+    }
+  }
+
   outline(title: none)
 
   show heading.where(level: 1): it => heading_rule_1(it)
