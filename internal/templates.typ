@@ -9,6 +9,10 @@
 #import "common_vars.typ": *
 #import "data_extractor.typ": *
 
+#let tag(it) = {
+  text(font: mono_font, weight: "bold", fill: blue, it)
+}
+
 #let preface(doc) = {
   counter(heading).update(0)
   set heading(
@@ -30,6 +34,8 @@
 }
 
 
+
+
 #let narrative(
   doc,
 ) = {
@@ -42,6 +48,7 @@
   ))) if upper(status) == "DRAFT"
 
   set page(
+    paper: small_paper_size,
     numbering: "i",
     margin: 60pt,
     footer: footer,
@@ -72,11 +79,16 @@
   show heading.where(level: 3): it => heading_rule_3(it)
   show heading.where(level: 4): it => heading_rule_4(it)
 
+  show regex("param\d+"): it => {
+    text(font: mono_font, weight: "bold", fill: purple, it)
+  }
+
+  show regex("\b\w+:param\d+\b"): it => {
+    text(font: mono_font, weight: "bold", fill: purple, it)
+  }
+
   show raw.line: it => {
-    set text(fill: orange.darken(10%)) if it
-      .fields()
-      .at("text")
-      .starts-with("x")
+    set text(fill: orange.darken(10%)) if it.fields().at("text").starts-with("x")
     it
   }
 

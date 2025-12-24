@@ -64,6 +64,7 @@
   ))
 
   page(
+    paper: large_paper_size,
     flipped: landscape,
     margin: 40pt,
   )[

@@ -11,6 +11,7 @@
     set text(font: title_font)
     set par(leading: 0.2em)
     page(
+      paper: small_paper_size,
       background: align(top, box(fill: accent_color, width: 100%, height: 20%)),
       margin: 5%,
       {
