@@ -27,18 +27,6 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
   product: "SEQ1",
   approver: none,
 )[
-  // === Summary
-  // This routine inhibit all requests for device operations made by any non-safety routines.
-
-  // === Run Condition
-  // - Loss of safety_stack
-
-  // === Stop Condition
-  // - safety_stack OK
-
-  // #line(length: 100%)
-  // === Narrative
-  // + Inhibit all requests that are not coming from safety routines for all devices in the affected sub-systems.
   #align(center + horizon, image("./safety_protocol_1.svg"))
 ]
 
@@ -131,14 +119,3 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
     + Deactivate #tag[P311] contactor
   ]
 ]
-
-
-#sheet(
-  function_scope: "BOSCH",
-  iec_61355_type: "EFF",
-  creator: "Remi Godin",
-  approver: none,
-)[
-
-]
-
