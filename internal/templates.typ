@@ -117,7 +117,7 @@
     body-indent: 10pt,
   )
   set enum(
-    indent: 20pt,
+    indent: 10pt,
     body-indent: 10pt,
     numbering: "(i-1-a-i)",
     number-align: left,

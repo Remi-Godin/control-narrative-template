@@ -74,6 +74,10 @@
     #show heading.where(level: 2): it => {
       text(size: 0.8em, it.body)
     }
+    #let style_wrapper(it) = {
+      set text(size: 0.8em)
+      it
+    }
     #figure(grid(
       rows: (1fr, auto),
       box(
@@ -81,7 +85,7 @@
         stroke: (top: black, left: black, right: black),
         width: 100%,
         height: 100%,
-        it,
+        style_wrapper(it),
       ),
       info_table,
     )) #label(function_id)

@@ -26,6 +26,14 @@ name = "=FEF"
 desc = "This scope includes all operations from the NX102 PLC, and all balance-of-plant items that are controlled by FEF."
 
 [[scope]]
+name = "=IPC"
+desc = "This scope refers to the FEF industrial PC running the DAQ software."
+
+[[scope]]
+name = "=DAQ"
+desc = "This scope refers to the data acquisition functionality of the system."
+
+[[scope]]
 name = "=BOSCH"
 desc = "This scope includes all Bosch items."
 
