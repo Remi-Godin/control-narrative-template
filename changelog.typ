@@ -1,11 +1,13 @@
 = Document Changelog
 
 
-== Draft Changes
+
+== Changes to Review (v0.3-rc1)
 
 
 
-- *Timestamp:* 2026-01-05T11:24:23Z
+
+- *Timestamp:* 2026-01-05T19:33:19Z
 
 - *Contributors:* Remi Godin
 
