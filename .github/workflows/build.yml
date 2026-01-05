@@ -27,7 +27,7 @@ jobs:
       # Generate a professional changelog based on Conventional Commits
       - name: Generate Markdown Changelog (git-cliff)
         uses: orhun/git-cliff-action@v4
-        id: git-cliff
+        id: git-cliff-md
         with:
           config: cliff-md.toml
           args: --latest --strip header
@@ -36,7 +36,7 @@ jobs:
 
       - name: Generate Typst Changelog (git-cliff)
         uses: orhun/git-cliff-action@v4
-        id: git-cliff
+        id: git-cliff-typ
         with:
           config: cliff-typ.toml
         env:
