@@ -25,7 +25,7 @@ jobs:
         uses: crate-ci/typos@v1.41.0
 
       # Generate a professional changelog based on Conventional Commits
-      - name: Generate Changelog (git-cliff)
+      - name: Generate Markdown Changelog (git-cliff)
         uses: orhun/git-cliff-action@v4
         id: git-cliff
         with:
@@ -33,6 +33,14 @@ jobs:
           args: --latest --strip header
         env:
           OUTPUT: changelog.md
+
+      - name: Generate Typst Changelog (git-cliff)
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        with:
+          config: cliff-typ.toml
+        env:
+          OUTPUT: changelog.typ
 
       - name: Generate Metadata JSON
         run: |
