@@ -20,3 +20,6 @@ This repository is meant to be used as a template. When creating a new narrative
 ## Local usage
 - To run the metadata generation locally, simply run the script found at `scripts/generate_metadata.sh`
 - To run the changelog file generation locally, run `git-cliff -c cliff-typ.toml -o changelog.typ`
+
+# Recommended Workflow
+I recommend using [VSCode](https://code.visualstudio.com/) with the [Tinymist](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist) extension. Once VSCode is installed, open the repo with it, and in your `main.typ` file, open the Typst Preview to view a live and interactable preview of the document.
