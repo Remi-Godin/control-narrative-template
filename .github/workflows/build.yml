@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0 # Essential for git-cliff to read history
 
       - name: Check for Typos
-        uses: crate-ci/typos-action@v1.29.0
+        uses: crate-ci/typos@v1.41.0
 
       # Generate a professional changelog based on Conventional Commits
       - name: Generate Changelog (git-cliff)
