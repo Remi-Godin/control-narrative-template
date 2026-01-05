@@ -109,7 +109,7 @@
 
     = Document Control
     == Document Status
-    There are two status: Draft, and Released. Documents with the Draft status MUST NOT be used for final logic implementation.
+    There are three status: Draft, FOR REVIEW, and RELEASED. Documents with the DRAFT or FOR REVIEW status MUST NOT be used for final logic implementation.
 
     == Revision control
     === Revision Schema<revision_schema>
