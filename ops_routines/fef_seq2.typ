@@ -11,33 +11,11 @@
   === Summary
   This routine defines the operation of the brine system pumps when controlled by the MHI system.
 
-  // #safety("Level 1 Permissives")[
-  //   - #ok[@safety_stack]
-  // ]
-  // #utilities("Level 2 Permissives")[
-  //   - #ok[@us_power]
-  //   - #ok[@us_pneumatic]
-  //   - #ok[@us_brine]
-  // ]
-  // #operations("Level 3 Permissives")[
-  //   - #ok[@os_lh2]
-  //   - #ok[@os_brine]
-  // ]
-  //
-
   ==== Permissives
-  #figure(
-    table(
-      columns: (1fr, 1fr, 1fr),
-      table.header(
-        table.cell(fill: red, "Level 1"), table.cell(fill: orange, "Level 2"), table.cell(fill: purple, "Level 3")
-      ),
-      lorem(4), lorem(4), lorem(4),
-      lorem(4), lorem(4), none,
-      lorem(4), lorem(4), none,
-      none, lorem(4), none,
-    ),
-    // caption: [Permissives required for this routine.],
+  #permissives(
+    "safety_stack",
+    ("us_power", "us_pneumatic", "us_brine"),
+    ("os_lh2", "os_brine"),
   )
 
   #let run = [

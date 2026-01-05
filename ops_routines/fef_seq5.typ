@@ -12,31 +12,10 @@
   This routine defines the operation of the Ebara pump.
 
   ==== Permissives
-  // #safety("Level 1 Permissives")[
-  //   - #ok[@safety_stack]
-  // ]
-  // #utilities("Level 2 Permissives")[
-  //   - #ok[@us_power]
-  //   - #ok[@us_pneumatic]
-  //   - #ok[@us_lh2]
-  //   - #ok[@us_ebara]
-  // ]
-  // #operations("Level 3 Permissives")[
-  //   - #ok[@os_lh2]
-  //   - #ok[@os_ebara]
-  // ]
-  #figure(
-    table(
-      columns: (1fr, 1fr, 1fr),
-      table.header(
-        table.cell(fill: red, "Level 1"), table.cell(fill: orange, "Level 2"), table.cell(fill: purple, "Level 3")
-      ),
-      lorem(4), lorem(4), lorem(4),
-      lorem(4), lorem(4), none,
-      lorem(4), lorem(4), none,
-      none, lorem(4), none,
-    ),
-    // caption: [Permissives required for this routine.],
+  #permissives(
+    "safety_stack",
+    ("us_power", "us_pneumatic", "us_brine", "us_ebara"),
+    ("os_lh2", "os_ebara"),
   )
 
   ==== Run conditions

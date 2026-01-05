@@ -97,7 +97,10 @@
   }
 
   show raw.line: it => {
-    set text(fill: orange.darken(10%)) if it.fields().at("text").starts-with("x")
+    set text(fill: orange.darken(10%)) if it
+      .fields()
+      .at("text")
+      .starts-with("x")
     it
   }
 
