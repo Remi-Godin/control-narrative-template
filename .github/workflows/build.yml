@@ -44,7 +44,7 @@ jobs:
         uses: typst-community/setup-typst@v4
 
       - name: Compile Typst Document
-        run: typst compile main.typ "$FILENAME"
+        run: typst compile --font-path internal/assets main.typ "$FILENAME"
 
       # Save the PDF as an Action Artifact (Backup)
       - name: Upload PDF Artifact
