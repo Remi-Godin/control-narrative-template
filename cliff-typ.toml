@@ -1,18 +1,25 @@
 [changelog]
 header = """
-# Document Revision History\n
+= Document Changelog\n
 """
 
 body = """
-{% if version %}\
-    # Release {{ version }}
-{% else %}\
-    # Unreleased Changes
-{% endif %}\
+{% if version %}
+    {% if "rc" in version %}
+        == Changes to Review ({{ version }})
+    {% else %}
+        == Release {{ version }}
+    {% endif %}
+{% else %}
+    == Draft Changes
+{% endif %}
 
-## Release Info
-- **Timestamp:** {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}
-- **Contributors:** {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
+{% if timestamp %}
+- *Timestamp:* {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}
+{% else %}
+- *Timestamp:* {{ now() | date(format="%Y-%m-%dT%H:%M:%SZ")}}
+{% endif %}
+- *Contributors:* {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
 {#- Check for co-authors in footers -#}
 {%- for commit in commits -%}
   {%- for footer in commit.footers -%}
@@ -21,7 +28,7 @@ body = """
 {%- endfor %}
 
 {% for group, commits in commits | group_by(attribute="group") %}
-### {{ group }}
+=== {{ group }}
 {% for commit in commits %}
 - {% if commit.scope %}**[{{ commit.scope }}]** {% endif %}{{ commit.message | upper_first }}
 {%- endfor %}
@@ -44,6 +51,9 @@ commit_parsers = [
     { message = "^docs", group = "Documentation" },
 ]
 
+
+tag_pattern = "v[0-9].[0-9]"
+# skip_tags = "v.*-rc.*"
 filter_commits = true
-tag_pattern = "v[0-9]*"
 sort_commits = "oldest"
+top_order = false

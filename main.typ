@@ -2,6 +2,7 @@
 
 #show: narrative
 
+#include "changelog.typ"
 = Livermore HUB Station Information
 == Fueling Operations<fueling_operations>
 The Livermore site act as a hub to refill gaseous trailers that are then sent to refill our gaseous stations.
