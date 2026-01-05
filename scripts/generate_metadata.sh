@@ -29,7 +29,7 @@ REVISION_LABEL="Draft after $DISPLAY_TAG"
 if [ -n "$CURRENT_TAG" ]; then
     # If the tag contains "-rc", it's still a draft/candidate
     if [[ "$CURRENT_TAG" == *"-rc"* ]]; then
-        STATUS="DRAFT (RC)"
+        STATUS="FOR REVIEW"
         REVISION_LABEL="Release Candidate: $CURRENT_TAG"
     else
         STATUS="RELEASED"

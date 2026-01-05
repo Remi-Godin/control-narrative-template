@@ -37,7 +37,7 @@
       top: if y > 0 { black },
       left: if x > 0 { black },
     ),
-    columns: (20%, 20%),
+    columns: (25%, 25%),
     table.cell(colspan: 2, entry("REFERENCE ID", mono(
       font: mono_font,
       full_id,
