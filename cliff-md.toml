@@ -39,7 +39,7 @@ commit_parsers = [
 
 
 tag_pattern = "v[0-9]*"
-skip_tags = "v0.[0-9]"
+skip_tags = "v(0.*|1.0+)"
 ignore_tags = "v.*-rc.*"
 filter_commits = true
 sort_commits = "oldest"
