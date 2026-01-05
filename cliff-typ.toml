@@ -8,7 +8,6 @@ body = """
 === Changes Info
 {% if timestamp %}- *Timestamp:* {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}{% else %}- *Timestamp:* {{ now() | date(format="%Y-%m-%dT%H:%M:%SZ")}}{% endif %}
 - *Contributors:* {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
-{=- Check for co-authors in footers -=}
 {%- for commit in commits -%}
   {%- for footer in commit.footers -%}
     {%- if footer.token == "Co-authored-by" -%}, {{ footer.value }}{%- endif -%}

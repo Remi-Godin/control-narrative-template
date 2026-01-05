@@ -109,13 +109,13 @@
 
     = Document Control
     == Document Status
-    There are three status: Draft, FOR REVIEW, and RELEASED. Documents with the DRAFT or FOR REVIEW status MUST NOT be used for final logic implementation.
+    There are three status: DRAFT, FOR REVIEW, and RELEASED. Documents with the DRAFT or FOR REVIEW status MUST NOT be used for final logic implementation.
 
     == Revision control
     === Revision Schema<revision_schema>
     The document revision number follows a `v<major>.<minor>` scheme, where a major revision change indicates a change in narrative logic, while minor revision changes indicates small corrections such as formatting issues, diagram cleanup, and typos. A `-<rc#>` suffix indicates that the document is a release candidate and is currently being reviewed.
     === Draft Changes
-    When the document status is "Draft", the revision number will be accompanied with a diff count, such as "`v1.8 (+8)`". In this example, this indicate that the current draft has 8 changes recorded since version 1.8 was released. Once ready for release, the version will be incremented according to the @revision_schema.
+    When the document status is "DRAFT", the revision number will be accompanied with a diff count, such as "`v1.8 (+8)`" or "`v1.9-rc1 (+8)`". In these example, this indicate that the current draft has 8 changes recorded since the previous release or release candidate.
     === Revision Lockstep
     All documents nested within this documents will use the same revision number as the overall document.
 
