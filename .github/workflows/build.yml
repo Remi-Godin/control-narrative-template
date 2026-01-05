@@ -41,7 +41,7 @@ jobs:
         shell: bash
 
       - name: Setup Typst
-        uses: chuvayesh/setup-typst@v1
+        uses: typst-community/setup-typst@v4
 
       - name: Compile Typst Document
         run: typst compile main.typ "$FILENAME"
