@@ -113,9 +113,9 @@
 
     == Revision control
     === Revision Schema<revision_schema>
-    The document revision number follows a `<major>.<minor>` scheme, where a major revision change indicates a change in narrative logic, while minor revision changes indicates small corrections such as formatting issues, diagram cleanup, and typos.
+    The document revision number follows a `v<major>.<minor>` scheme, where a major revision change indicates a change in narrative logic, while minor revision changes indicates small corrections such as formatting issues, diagram cleanup, and typos. A `-<rc#>` suffix indicates that the document is a release candidate and is currently being reviewed.
     === Draft Changes
-    When the document status is "Draft", the revision number will be accompanied with a diff count, such as "`1.8 (+8)`". In this example, this indicate that the current draft has 8 changes recorded since version 1.8 was released. Once ready for release, the version will be incremented according to the @revision_schema.
+    When the document status is "Draft", the revision number will be accompanied with a diff count, such as "`v1.8 (+8)`". In this example, this indicate that the current draft has 8 changes recorded since version 1.8 was released. Once ready for release, the version will be incremented according to the @revision_schema.
     === Revision Lockstep
     All documents nested within this documents will use the same revision number as the overall document.
 
