@@ -6,7 +6,7 @@ system_scope = "CTRL"
 iec_61355_type = "EFE"
 doc_num = "CN1"
 creator= "Remi Godin"
-approver= ""
+approver= "Remi Godin"
 owner= "True Zero"
 
 [[scope]]
