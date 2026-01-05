@@ -37,7 +37,6 @@ commit_parsers = [
     { message = "^docs", group = "Documentation" },
 ]
 
-
 tag_pattern = "v[0-9]*"
 skip_tags = "v(0.*|1.0+)"
 ignore_tags = "v.*-rc.*"
