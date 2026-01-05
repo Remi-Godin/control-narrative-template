@@ -1,0 +1,66 @@
+name: Release Typst Document
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: # Allows manual triggering from the GitHub UI
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      # Automatically includes the repo name and the version/branch in the filename
+      FILENAME: ${{ github.event.repository.name }}-${{ github.ref_name }}.pdf
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Essential for git-cliff to read history
+
+      - name: Check for Typos
+        uses: crate-ci/typos-action@v1.29.0
+
+      # Generate a professional changelog based on Conventional Commits
+      - name: Generate Changelog (git-cliff)
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: --latest --strip header
+        env:
+          OUTPUT: changelog.md
+
+      - name: Generate Metadata JSON
+        run: |
+          chmod +x ./scripts/generate_metadata.sh
+          ./scripts/generate_metadata.sh > metadata.json
+        shell: bash
+
+      - name: Setup Typst
+        uses: chuvayesh/setup-typst@v1
+
+      - name: Compile Typst Document
+        run: typst compile main.typ "$FILENAME"
+
+      # Save the PDF as an Action Artifact (Backup)
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.repository.name }}-pdf
+          path: ${{ env.FILENAME }}
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/') # Only create a release if triggered by a tag
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.FILENAME }}
+          body_path: changelog.md
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
