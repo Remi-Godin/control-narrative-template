@@ -23,14 +23,21 @@ else
 fi
 
 # 5. Determine Status and Version String
+STATUS="DRAFT"
+REVISION_LABEL="Draft after $DISPLAY_TAG"
+
 if [ -n "$CURRENT_TAG" ]; then
-    STATUS="RELEASED"
+    # If the tag contains "-rc", it's still a draft/candidate
+    if [[ "$CURRENT_TAG" == *"-rc"* ]]; then
+        STATUS="DRAFT (RC)"
+        REVISION_LABEL="Release Candidate: $CURRENT_TAG"
+    else
+        STATUS="RELEASED"
+        REVISION_LABEL="Official Release: $CURRENT_TAG"
+    fi
     VERSION="$CURRENT_TAG"
-    REVISION_LABEL="$CURRENT_TAG"
 else
-    STATUS="DRAFT"
     VERSION="$DISPLAY_TAG (+$COMMITS_SINCE_TAG)"
-    REVISION_LABEL="Draft after $DISPLAY_TAG"
 fi
 
 # 6. Output for Typst
