@@ -20,15 +20,11 @@
   }
 
   let function_id = str(
-    "=="
-      + operational_scope
-      + "="
-      + system_scope
-      + if type(function_scope) == array {
-        "=" + function_scope.join("=")
-      } else if function_scope != none {
-        "=" + function_scope
-      }
+    if type(function_scope) == array {
+      "=" + function_scope.join("=")
+    } else if function_scope != none {
+      "=" + function_scope
+    }
       + "&"
       + iec_61355_type
       + "-"
