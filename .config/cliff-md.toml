@@ -3,23 +3,40 @@ header = """
 # Document Changelog
 """
 
+
 body = """
-{% if version %}{% if "rc" in version %}## Changes to Review ({{ version }}){% else %}## Release {{ version }}{% endif %}{% else %}## Draft Changes{% endif %}
+{% if version -%}
+{% if "rc" in version -%}
+## Changes to Review ({{ version }})
+{% else -%}
+## Release {{ version }}
+{% endif -%}
+{% else -%}
+## Draft Changes
+{% endif -%}
 ### Changes Info
-{% if timestamp %}- **Timestamp:** {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}{% else %}- **Timestamp:** {{ now() | date(format="%Y-%m-%dT%H:%M:%SZ")}}{% endif %}
-- **Contributors:** {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
-{#- Check for co-authors in footers -#}
+{% if timestamp -%}
+- *Timestamp:* {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}
+{% else -%}
+- *Timestamp:* {{ now() | date(format="%Y-%m-%dT%H:%M:%SZ")}}
+{% endif -%}
+- *Contributors:* {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
 {%- for commit in commits -%}
   {%- for footer in commit.footers -%}
     {%- if footer.token == "Co-authored-by" -%}, {{ footer.value }}{%- endif -%}
   {%- endfor -%}
 {%- endfor %}
-{% for group, commits in commits | group_by(attribute="group") %}#### {{ group }}
-{% for commit in commits %}
-- {% if commit.scope %}**[{{ commit.scope }}]** {% endif %}{{ commit.message | upper_first }}
-{%- endfor %}
+{% for group, commits in commits | group_by(attribute="group") -%}
+#### {{ group }}
+{% for commit in commits -%}
+- {% if commit.scope %}*[{{ commit.scope }}]* {% endif %}{{ commit.message | upper_first }}
+{% if commit.body -%}
+{{"   - "}}{{ commit.body | indent }}
+{% endif -%}
+{% endfor %}
 {% endfor %}\n
 """
+
 
 footer = """
 """
