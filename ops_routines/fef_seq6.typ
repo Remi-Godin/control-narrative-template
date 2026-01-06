@@ -1,7 +1,7 @@
 #import "../template.typ": *
 
 #sheet(
-  name: "Ebara Pump Operations",
+  name: "MHI Pump Operations",
   function_scope: "FEF",
   iec_61355_type: "EFE",
   creator: "Remi Godin",
