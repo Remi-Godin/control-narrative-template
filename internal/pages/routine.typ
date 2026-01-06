@@ -12,6 +12,7 @@
   approver: "approver",
   it,
 ) = {
+  set par(justify: false)
   let entry(desc, value) = {
     stack(
       spacing: 0.20em,
