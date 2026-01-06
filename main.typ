@@ -135,3 +135,16 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
 #include "./ops_routines/fef_seq5.typ"
 #include "./ops_routines/fef_seq6.typ"
 
+
+= Communications
+== FEF #sym.arrow.l.r Ebara
+#sheet(
+  name: "Ebara Watchdog Operations for FEF Comms",
+  function_scope: ("FEF", "EBARA"),
+  iec_61355_type: "EFF",
+  creator: "Remi Godin",
+  product: "SEQ7",
+  approver: none,
+)[
+  #set align(center + horizon)
+]
