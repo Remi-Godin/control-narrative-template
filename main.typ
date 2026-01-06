@@ -108,7 +108,7 @@ Only one pump MUST be allowed to run at once.
   approver: none,
 )[
   #set align(center + horizon)
-  #image("./system_layout.svg")
+  #image("./assets/drawings/ctrl_des1.svg")
 ]
 
 = Safety Routines
@@ -123,7 +123,7 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
   product: "SEQ1",
   approver: none,
 )[
-  #align(center + horizon, image("./safety_protocol_1.svg"))
+  #align(center + horizon, image("./assets/drawings/fef_seq1.svg"))
 ]
 
 = Operation Routines<operation_routines>
