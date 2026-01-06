@@ -43,19 +43,19 @@
   ==== Run Narrative
   + Activate #tag[P310] contactor
   + Activate #tag[P311] contactor
-  + WAIT for time:param38
-  + Start #tag[P310] at percent:param39
-  + Start #tag[P311] at percent:param40
-  + Request to start brine_heaters_ops
-  + WAIT for time:param41
-  + Set #tag[P310] speed at percent:param42
-  + Set #tag[P311] speed at percent:param43
-  + WAIT for time:param44
-  + Set #tag[P310] speed at percent:param45
-  + Set #tag[P311] speed at percent:param46
+  + WAIT for #param(38)
+  + Start #tag[P310] at #param(39)
+  + Start #tag[P311] at #param(40)
+  + Request to start @brine_heaters
+  + WAIT for #param(41)
+  + Set #tag[P310] speed at #param(42)
+  + Set #tag[P311] speed at #param(43)
+  + WAIT for #param(44)
+  + Set #tag[P310] speed at #param(45)
+  + Set #tag[P311] speed at #param(46)
 
   ==== Stop Narrative
-  + Stop brine_heaters_ops
+  + Stop @brine_heaters
   + Stop #tag[P310]
   + Stop #tag[P311]
   + Deactivate #tag[P310] contactor

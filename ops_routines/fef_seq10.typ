@@ -1,15 +1,15 @@
 #import "../template.typ": *
 
 #sheet(
-  name: "MHI Pump Strategy 1: Auto Speed Ramp Up",
+  name: "MHI Pump Strategy 2: Manual Speed Ramp Up",
   function_scope: "FEF",
   iec_61355_type: "EFE",
   creator: "Remi Godin",
   approver: none,
-  product: "SEQ6",
+  product: "SEQ10",
 )[
   === Summary
-  This routine defines the operation of MHI pump when it automatically ramps the speed as defined in the MHI operation procedure document.
+  This routine defines the operations of the MHI pump when the manual speed ramp up strategy is selected.
 
   ==== Permissives
   #permissives(
@@ -20,20 +20,21 @@
 
   ==== Run conditions
   #let run = [ALL:
+    - MHI pump strategy == 2
     - MHI Pump in auto mode
-    - #tag[PCV-520] in auto mode
-    - #tag[PCV-520] strategy == 1 | 2
+    - `PCV-520` in auto mode
+    - `PCV-520` strategy == 1 | 2
     - mhi_pump_start_signal:cmd9 == true
-    - MHI pump strategy == 1
 
   ]
 
   #let stop = [
-    - ANY:
-      - mhi_pump_stop_signal:cmd2 == true
-      - brine_stop_signal:cmd4 == true
-      - `MOTO-1` running for more than time:param15
-      - `PT-440` > target pressure param16
+    ANY:
+    - mhi_pump_stop_signal:cmd2 == true
+    - brine_stop_signal:cmd4 == true
+    - `MOTO-1` running for more than time:param15
+    - `PT-440` > target pressure param16
+
   ]
 
   #figure(
@@ -44,24 +45,16 @@
     ),
     // caption: "Start and stop conditions for this routine.",
   )
-
   ==== Narrative
   + [LABEL: pump_start]
   + Enable #tag[MOTO-1] VFD contactor
-  + WAIT for #param(3)
+  + WAIT for #param(1)
   + Request #tag[MOTO-1] VFD to start at speed #param(2)
   + [LABEL: ramp_up]
-  + WAIT for #param(4)
-  + Set #tag[MOTO-1] speed to #param(5)
-  + WAIT for #param(6)
-  + Set #tag[MOTO-1] speed to #param(7)
-  + WAIT for #param(8)
-  + Set #tag[MOTO-1] speed to #param(9)
-  + WAIT for #param(10)
-  + Set #tag[MOTO-1] speed to #param(11)
-  + WAIT for #param(12)
-  + Set #tag[MOTO-1] speed to #param(13)
-  + Start #tag[PCV-520] auto mode
+  + LOOP:
+    + Set #tag[MOTO-1] speed to mhi_pump_strat2_speed:cmd20
+    + IF #tag[MOTO-1] speed >= #param(19)
+      + THEN request #tag[PCV-520] auto control
 
   ==== Shutdown Narrative
   + Stop #tag[MOTO-1] VFD

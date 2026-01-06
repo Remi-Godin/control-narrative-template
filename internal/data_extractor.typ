@@ -49,3 +49,64 @@
     + doc_num
 )
 
+
+#let params = toml("../params.toml")
+#let param(num) = {
+  if params.param.keys().contains(str(num)) {
+    let param_type = if params.param.at(str(num)).keys().contains("type") {
+      params.param.at(str(num)).type
+    } else {
+      none
+    }
+    let prefix = if param_type != none {
+      ":" + str(param_type)
+    } else { "" }
+
+    (
+      text(
+        weight: "bold",
+        font: "Noto Sans Mono",
+        fill: purple,
+        "[P" + str(num) + prefix + "]",
+      )
+        + text(
+          font: "Noto Sans Mono",
+          fill: purple,
+          params.param.at(str(num)).name,
+        )
+    )
+  } else {
+    text(fill: red, "PARAM " + str(num) + " DOES NOT EXIST")
+  }
+}
+
+
+#let render-param-table(params, start: none, stop: none) = {
+  // 1. Filter and sort the parameters first
+  let filtered-params = params
+    .param
+    .pairs()
+    .map(it => (int(it.at(0)), it.at(1))) // Convert ID string to integer
+    .filter(it => {
+      let id = it.at(0)
+      let after-start = (start == none or id >= start)
+      let before-stop = (stop == none or id <= stop)
+      after-start and before-stop
+    })
+    .sorted(key: it => it.at(0))
+
+  // 2. Render the table
+  table(
+    columns: (auto, 1fr, auto),
+    align: horizon,
+    [*ID*], [*Parameter Name*], [*Type*],
+
+    ..for (id, info) in filtered-params {
+      (
+        "P" + str(id),
+        raw(info.name),
+        if info.keys().contains("type") { info.type } else { none },
+      )
+    },
+  )
+}

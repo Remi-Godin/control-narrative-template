@@ -40,10 +40,10 @@
   #colbreak()
   ==== Narrative
   + LOOP
-    + IF #tag[TT3x2] <= temp:param47
+    + IF #tag[TT3x2] <= #param(47)
       + THEN
         + Start #tag[HTR3x0]
-    + IF #tag[TT3x2] >  temp:param48
+    + IF #tag[TT3x2] >  #param(48)
       + THEN
         + Stop #tag[HTR3x0]
 

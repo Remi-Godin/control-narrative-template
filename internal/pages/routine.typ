@@ -3,6 +3,7 @@
 #let mono(it) = upper(text(font: mono_font, weight: "bold")[#it])
 #let sheet(
   landscape: false,
+  no_margin: false,
   name: "sheet_name",
   function_scope: "function_scope",
   iec_61355_type: "iec_61355_type",
@@ -77,7 +78,7 @@
     #figure(grid(
       rows: (1fr, auto),
       box(
-        inset: 10pt,
+        inset: if no_margin { 0pt } else { 10pt },
         stroke: (top: black, left: black, right: black),
         width: 100%,
         height: 100%,

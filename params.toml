@@ -1,0 +1,131 @@
+[param.1]
+name = "mhi_delay_before_starting_vfd"
+type = "percent"
+
+[param.2]
+name = "mhi_pump_2_speed_sp"
+type = "percent"
+
+[param.3]
+name = "delay_before_starting_vfd"
+type = "time"
+
+[param.4]
+name = "delay_after_starting_vfd"
+type = "time"
+
+[param.5]
+name = "speed_setpoint_1"
+
+[param.6]
+name = "delay_setpoint_1"
+
+[param.7]
+name = "speed_setpoint_2"
+
+[param.8]
+name = "delay_setpoint_2"
+
+[param.9]
+name = "speed_setpoint_3"
+
+[param.10]
+name = "delay_setpoint_3"
+
+[param.11]
+name = "speed_setpoint_4"
+
+[param.12]
+name = "delay_setpoint_4"
+
+[param.13]
+name = "speed_setpoint_5"
+
+[param.18]
+name = "MOTO1_PCV520_threshold_for_MN4_control"
+
+[param.19]
+name = "PCV520_threshold_for_auto_speed_request"
+type = "percent"
+
+[param.21]
+name = "PCV520_auto_mode_default_opening"
+
+[param.24]
+name = "PCV520_minus_deviation"
+
+[param.25]
+name = "PCV520_place_deviation"
+
+[param.26]
+name = "PCV520_open_speed_1"
+
+[param.27]
+name = "PCV520_close_speed_1"
+
+[param.28]
+name = "PCV520_close_speed_2"
+
+[param.29]
+name = "PCV520_close_speed_3"
+
+[param.30]
+name = "PCV520_diff_threshold_1"
+
+[param.31]
+name = "PCV520_diff_threshold_2"
+
+[param.32]
+name = "PCV520_diff_threshold_3"
+
+[param.33]
+name = "PCV520_diff_threshold_4"
+
+[param.34]
+name = "PCV520_opening_control_udpate_period"
+
+[param.36]
+name = "PCV520_close_limit"
+
+[param.38]
+name = "brine_system_start_delay_after_contactor"
+type = "time"
+
+[param.39]
+name = "P310_speed_setpoint_1"
+type = "percent"
+
+[param.40]
+name = "P311_speed_setpoint_1"
+type = "percent"
+
+
+[param.41]
+name = "brine_system_speed_increase_delay_1"
+type = "time"
+
+[param.42]
+name = "P310_speed_setpoint_2"
+type = "percent"
+
+[param.43]
+name = "P311_speed_setpoint_2"
+type = "percent"
+
+[param.44]
+name = "brine_system_speed_increase_delay_2"
+type = "time"
+
+[param.45]
+name = "P310_speed_setpoint_3"
+type = "percent"
+
+[param.46]
+name = "P311_speed_setpoint_3"
+type = "percent"
+
+[param.47]
+name = "brine_system_heater_start_sp"
+
+[param.48]
+name = "brine_system_heater_shutoff_sp"

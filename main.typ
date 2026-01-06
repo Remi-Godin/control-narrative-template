@@ -15,11 +15,14 @@ Since the testing operations makes us a multi-tenant site that is subject to cha
 
 == Summary of Auxiliary Equipment
 
-=== Air Compressor
+=== Air Compressor<air_compressor>
 Provides compressed air to supply pneumatic equipment.
 
-=== N2 Generator
+=== N2 Generator<n2_generator>
 Generates nitrogen for use in purging our system.
+
+=== Brine Heaters<brine_heaters>
+Heats the brine that is used to warm up the hydrogen.
 
 == Summary of HUB Operations Equipment
 === LH2 Tank<lh2_tank>
@@ -111,7 +114,24 @@ Only one pump MUST be allowed to run at once.
   #image("./assets/drawings/ctrl_des1.svg")
 ]
 
-= Safety Routines
+= System Parameters
+== Summary
+The parameters referenced in the @safety_routines and @operation_routines sections are defined in this section.
+
+#sheet(
+  no_margin: true,
+  name: "Parameter List",
+  function_scope: none,
+  iec_61355_type: "EFQ",
+  creator: "Remi Godin",
+  product: "SPEC1",
+  approver: none,
+)[
+  #render-param-table(params, start: 0, stop: 100)
+]
+
+
+= Safety Routines<safety_routines>
 == Summary
 Safety routines are routines that are executed upon a loss of level 1 permissives.
 
@@ -134,6 +154,9 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
 #include "./ops_routines/fef_seq4.typ"
 #include "./ops_routines/fef_seq5.typ"
 #include "./ops_routines/fef_seq6.typ"
+#include "./ops_routines/fef_seq10.typ"
+#include "./ops_routines/fef_seq11.typ"
+#include "./ops_routines/fef_seq12.typ"
 
 
 = Communications
