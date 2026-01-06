@@ -82,7 +82,7 @@ name = "PCV520_diff_threshold_3"
 name = "PCV520_diff_threshold_4"
 
 [param.34]
-name = "PCV520_opening_control_udpate_period"
+name = "PCV520_opening_control_update_period"
 
 [param.36]
 name = "PCV520_close_limit"
