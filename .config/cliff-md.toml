@@ -16,11 +16,11 @@ body = """
 {% endif -%}
 ### Changes Info
 {% if timestamp -%}
-- *Timestamp:* {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}
+- **Timestamp:** {{ timestamp | date(format="%Y-%m-%dT%H:%M:%SZ") }}
 {% else -%}
-- *Timestamp:* {{ now() | date(format="%Y-%m-%dT%H:%M:%SZ")}}
+- **Timestamp:** {{ now() | date(format="%Y-%m-%dT%H:%M:%SZ")}}
 {% endif -%}
-- *Contributors:* {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
+- **Contributors:** {% for commit in commits | unique(attribute="author.name") %}{{ commit.author.name }}{% if not loop.last %}, {% endif %}{% endfor %}\
 {%- for commit in commits -%}
   {%- for footer in commit.footers -%}
     {%- if footer.token == "Co-authored-by" -%}, {{ footer.value }}{%- endif -%}
@@ -29,7 +29,7 @@ body = """
 {% for group, commits in commits | group_by(attribute="group") -%}
 #### {{ group }}
 {% for commit in commits -%}
-- {% if commit.scope %}*[{{ commit.scope }}]* {% endif %}{{ commit.message | upper_first }}
+- {% if commit.scope %}**[{{ commit.scope }}]** {% endif %}{{ commit.message | upper_first }}
 {% if commit.body -%}
 {{"   - "}}{{ commit.body | indent }}
 {% endif -%}
