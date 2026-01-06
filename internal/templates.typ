@@ -155,6 +155,15 @@
   show: preface
   preface_page
 
+  {
+    show heading.where(level: 2): set heading(outlined: false)
+    show heading.where(level: 3): set heading(outlined: false)
+    show heading.where(level: 4): set heading(outlined: false)
+    show heading.where(level: 5): set heading(outlined: false)
+    set list(marker: (sym.bullet.o, sym.bullet.stroked))
+    include "../changelog.typ"
+  }
+
   show: main
   doc
 }

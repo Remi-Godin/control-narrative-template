@@ -9,7 +9,7 @@
   product: "SEQ6",
 )[
   === Summary
-  This routine defines the operation of `PCV-520` when adjusting opening based on error sampled at fixed intervals.
+  This routine defines the operation of #tag[PCV-520] when adjusting opening based on error sampled at fixed intervals.
 
 
   ==== Permissives
@@ -21,9 +21,9 @@
 
   ==== Run conditions
   #let run = [ALL:
-    - `PCV-520` strategy == 1
-    - `PCV-520` control mode in auto
-    - `MOTO-1` VFD running
+    - #tag[PCV-520] strategy == 1
+    - #tag[PCV-520] control mode in auto
+    - #tag[MOTO-1] VFD running
     - Auto request active
   ]
 
@@ -39,32 +39,32 @@
 
   ==== Narrative
   + [LABEL: speed_check]
-  + IF `MOTO-1` VFD speed >= speed:param18
+  + IF #tag[MOTO-1] VFD speed >= speed:param18
     + THEN IF signal:ft_420_low_flow
       + THEN
-        + Set `PCV-520` to percent:param21
+        + Set #tag[PCV-520] to percent:param21
         + [GOTO: speed_check]
       + ELSE
         + [GOTO: opening_control]
     + ELSE
-      + Set `PCV-520` to percent:param21
+      + Set #tag[PCV-520] to percent:param21
   + [LABEL: opening_control]
   + IF time:param34 elapsed since last time this was done:
-    + LET diff = `MN4` setpoint - `MN4` actual
+    + LET diff = #tag[MN4] setpoint - #tag[MN4] actual
     + IF press:param24 <= (diff \* -1) <= press:param25
       + THEN
         + [GOTO: speed_check]
       + ELSE
         + IF diff > press:param30
-          + THEN add rate:param27 \* (time:param34 as secs) to `PCV-520`
+          + THEN add rate:param27 \* (time:param34 as secs) to #tag[PCV-520]
         + ELIF diff > press:param31
-          + THEN add rate:param28 \* (time:param34 as secs) to `PCV-520`
+          + THEN add rate:param28 \* (time:param34 as secs) to #tag[PCV-520]
         + ELIF diff > press:param32
-          + THEN add rate:param29 \* (time:param34 as secs) to `PCV-520`
+          + THEN add rate:param29 \* (time:param34 as secs) to #tag[PCV-520]
         + ELIF diff < press:param33
-          + THEN add rate:param26 \* (time:param34 as secs) to `PCV-520`
-        + IF bool:cmd5 AND `PCV-520` opening < percent:param36
-          + Set `PCV-520` to percent:param36
+          + THEN add rate:param26 \* (time:param34 as secs) to #tag[PCV-520]
+        + IF bool:cmd5 AND #tag[PCV-520] opening < percent:param36
+          + Set #tag[PCV-520] to percent:param36
         + [GOTO: speed_check]
 ]
 
