@@ -3,6 +3,7 @@
 #show: narrative
 
 #include "changelog.typ"
+
 = Livermore HUB Station Information
 == Fueling Operations<fueling_operations>
 The Livermore site act as a hub to refill gaseous trailers that are then sent to refill our gaseous stations.
@@ -147,4 +148,17 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
   approver: none,
 )[
   #set align(center + horizon)
+  #image("./assets/drawings/fef_ebara_seq7.svg")
+]
+
+#sheet(
+  name: "Ebara Start Signal From FEF",
+  function_scope: ("FEF", "EBARA"),
+  iec_61355_type: "EFF",
+  creator: "Remi Godin",
+  product: "SEQ8",
+  approver: none,
+)[
+  #set align(center + horizon)
+  #image("./assets/drawings/fef_ebara_seq8.svg")
 ]
