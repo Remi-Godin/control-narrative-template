@@ -128,7 +128,7 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
 ]
 
 = Operation Routines<operation_routines>
-#ref(label("==LIV=CTRL&EFA-DES1"))
+#link(label("&EFA-DES1"))[Test]
 
 #include "./ops_routines/fef_seq2.typ"
 #include "./ops_routines/fef_seq3.typ"
@@ -138,7 +138,9 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
 
 
 = Communications
-== FEF #sym.arrow.l.r Ebara
+== Summary
+This section will define methods of communicating data between systems, as well as other considerations when it comes to connection monitoring.
+
 #sheet(
   name: "Ebara Watchdog Operations for FEF Comms",
   function_scope: ("FEF", "EBARA"),
