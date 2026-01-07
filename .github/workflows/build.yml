@@ -23,6 +23,8 @@ jobs:
 
       - name: Check for Typos
         uses: crate-ci/typos@v1.41.0
+        with:
+          config: .config/typos.toml
 
       # Generate a professional changelog based on Conventional Commits
       - name: Generate Markdown Changelog (git-cliff)
