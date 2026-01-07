@@ -1,15 +1,15 @@
 #import "../template.typ": *
 
 #sheet(
-  name: "Brine System Pumps Strategy 2: Bosch Control",
+  name: "Brine System Contactor Strategy 2: Bosch Control",
   function_scope: "FEF",
   iec_61355_type: "EFE",
   creator: "Remi Godin",
   approver: none,
-  product: "SEQ3",
+  product: "SEQ9",
 )[
   === Summary
-  This routine defines the operation of the brine system pumps when controlled by the Bosch system.
+  The MHI controls the contactors as part of the startup of the brine system routine. Bosch requires the contactors to be active prior to the start signal being received.
 
   ==== Permissives
   #permissives(
@@ -22,11 +22,9 @@
     ALL OF:
     - Brine system in auto
     - Brine system strategy = 2
-    - #command(1)
   ]
   #let stop = [ANY OF:
     - Loss of run conditions
-    - #command(2)
   ]
   ==== Start and stop conditions
   #figure(
@@ -39,15 +37,10 @@
   )
 
   ==== Narrative
-  + Start #tag[P310] at speed setpoint defined by Bosch
-  + Start #tag[P311] at speed setpoint defined by Bosch
-  + Accelerate/Decelerate towards speed setpoint at rate define by Bosch
+  + Energize #tag[P310] contactor
+  + Energize #tag[P311] contactor
 
   ==== Shutdown Narrative
-  + Stop brine_heaters_ops
-  + Stop #tag[P310]
-  + Stop #tag[P311]
-  + Deactivate #tag[P310] contactor
-  + Deactivate #tag[P311] contactor
-
+  + De-energize #tag[P310] contactor
+  + De-energize #tag[P311] contactor
 ]
