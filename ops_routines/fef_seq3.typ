@@ -47,7 +47,5 @@
   + Stop brine_heaters_ops
   + Stop #tag[P310]
   + Stop #tag[P311]
-  + Deactivate #tag[P310] contactor
-  + Deactivate #tag[P311] contactor
 
 ]
