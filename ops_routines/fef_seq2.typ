@@ -22,12 +22,12 @@
     ALL OF:
     - Brine system in auto
     - Brine system strategy = 1
-    - brine_start_signal:cmd4
+    - #command(1)
   ]
 
   #let stop = [
     ANY OF:
-    - brine_stop_signal:cmd5
+    - #command(2)
   ]
 
   ==== Start and stop conditions

@@ -24,7 +24,8 @@
     - Brine system strategy = 2
   ]
   #let stop = [ANY OF:
-    - Stop of run conditions
+    - Loss of run conditions
+    - #command(2)
   ]
   ==== Start and stop conditions
   #figure(
@@ -37,10 +38,10 @@
   )
 
   ==== Narrative
-  + Activate #tag[P310] contactor
-  + Activate #tag[P311] contactor
+  + Activate #tag[P310] contactor //TODO: Need to move these 2 to a different routine so I can extract the
+  + Activate #tag[P311] contactor //TODO: brine_run_signal check to an actual start condition instead. Maybe do the same with strategy 1, so that I can remove the call to the contactor from it as well.
   + LOOP
-    + IF brine_run_signal:cmd4
+    + IF brine_system_started (after #command(1) is received)
       + THEN
         + Set #tag[P310] at speed setpoint defined by Bosch
         + Set #tag[P311] at speed setpoint defined by Bosch

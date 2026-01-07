@@ -68,3 +68,11 @@ desc = "Defines a system design."
 [[product]]
 name = "-SPEC"
 desc = "Defines a specification, framework, or other abstraction."
+
+[[product]]
+name = "-PARAM"
+desc = "Defines a set of parameters or settings."
+
+[[product]]
+name = "-CMD"
+desc = "Defines a set of commands."

@@ -3,7 +3,7 @@ name = "mhi_delay_before_starting_vfd"
 type = "percent"
 
 [param.2]
-name = "mhi_pump_2_speed_sp"
+name = "mhi_pump_initial_speed_sp"
 type = "percent"
 
 [param.3]
@@ -98,7 +98,6 @@ type = "percent"
 [param.40]
 name = "P311_speed_setpoint_1"
 type = "percent"
-
 
 [param.41]
 name = "brine_system_speed_increase_delay_1"

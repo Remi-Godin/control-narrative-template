@@ -1,0 +1,27 @@
+[command.1]
+name = "start_brine_system"
+type = "bool"
+
+[command.2]
+name = "stop_brine_system"
+type = "bool"
+
+[command.3]
+name = "start_mhi_pump"
+type = "bool"
+
+[command.4]
+name = "stop_mhi_pump"
+type = "bool"
+
+[command.5]
+name = "set_brine_system_strategy"
+type = "uint"
+
+[command.6]
+name = "set_pcv520_strategy"
+type = "uint"
+
+[command.7]
+name = "set_pcv520_manual_setpoint"
+type = "f32"

@@ -23,15 +23,15 @@
     - MHI Pump in auto mode
     - #tag[PCV-520] in auto mode
     - #tag[PCV-520] strategy == 1 | 2
-    - mhi_pump_start_signal:cmd9 == true
+    - #command(3)
     - MHI pump strategy == 1
 
   ]
 
   #let stop = [
     - ANY:
-      - mhi_pump_stop_signal:cmd2 == true
-      - brine_stop_signal:cmd4 == true
+      - #command(4)
+      - #command(2)
       - `MOTO-1` running for more than time:param15
       - `PT-440` > target pressure param16
   ]

@@ -6,7 +6,7 @@
   iec_61355_type: "EFE",
   creator: "Remi Godin",
   approver: none,
-  product: "SEQ11",
+  product: "SEQ12",
 )[
   === Summary
   This routine defines the operation of #tag[PCV-520] when using manual setpoints. This is distinct from manual operations as the setpoint is only active while the valve is in auto and the start command has been issued.
@@ -39,6 +39,8 @@
     // caption: "Start and stop conditions for this routine.",
   )
   ==== Narrative
-  + Set valve opening to pcv_520_opening:cmd18
+  + Set valve opening to its default state
+  + LOOP
+    + When #command(7) is received, set valve opening to the received value
 ]
 

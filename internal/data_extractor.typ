@@ -79,8 +79,6 @@
     text(fill: red, "PARAM " + str(num) + " DOES NOT EXIST")
   }
 }
-
-
 #let render-param-table(params, start: none, stop: none) = {
   // 1. Filter and sort the parameters first
   let filtered-params = params
@@ -104,6 +102,70 @@
     ..for (id, info) in filtered-params {
       (
         "P" + str(id),
+        raw(info.name),
+        if info.keys().contains("type") { info.type } else { none },
+      )
+    },
+  )
+}
+
+
+#let commands = toml("../commands.toml")
+#let command(num) = {
+  if commands.command.keys().contains(str(num)) {
+    let command_type = if commands
+      .command
+      .at(str(num))
+      .keys()
+      .contains("type") {
+      commands.command.at(str(num)).type
+    } else {
+      none
+    }
+    let prefix = if command_type != none {
+      ":" + str(command_type)
+    } else { "" }
+
+    (
+      text(
+        weight: "bold",
+        font: "Noto Sans Mono",
+        fill: orange,
+        "[P" + str(num) + prefix + "]",
+      )
+        + text(
+          font: "Noto Sans Mono",
+          fill: orange,
+          commands.command.at(str(num)).name,
+        )
+    )
+  } else {
+    text(fill: red, "COMMAND" + str(num) + " DOES NOT EXIST")
+  }
+}
+#let render-command-table(commands, start: none, stop: none) = {
+  // 1. Filter and sort the commandeters first
+  let filtered-commands = commands
+    .command
+    .pairs()
+    .map(it => (int(it.at(0)), it.at(1))) // Convert ID string to integer
+    .filter(it => {
+      let id = it.at(0)
+      let after-start = (start == none or id >= start)
+      let before-stop = (stop == none or id <= stop)
+      after-start and before-stop
+    })
+    .sorted(key: it => it.at(0))
+
+  // 2. Render the table
+  table(
+    columns: (auto, 1fr, auto),
+    align: horizon,
+    [*ID*], [*commandeter Name*], [*Type*],
+
+    ..for (id, info) in filtered-commands {
+      (
+        "C" + str(id),
         raw(info.name),
         if info.keys().contains("type") { info.type } else { none },
       )

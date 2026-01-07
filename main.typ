@@ -114,9 +114,9 @@ Only one pump MUST be allowed to run at once.
   #image("./assets/drawings/ctrl_des1.svg")
 ]
 
-= System Parameters
+= System Settings
 == Summary
-The parameters referenced in the @safety_routines and @operation_routines sections are defined in this section.
+The parameters and commands referenced in the @safety_routines and @operation_routines sections are defined in this section.
 
 #sheet(
   no_margin: true,
@@ -124,10 +124,22 @@ The parameters referenced in the @safety_routines and @operation_routines sectio
   function_scope: none,
   iec_61355_type: "EFQ",
   creator: "Remi Godin",
-  product: "SPEC1",
+  product: "PARAM1",
   approver: none,
 )[
   #render-param-table(params, start: 0, stop: 100)
+]
+
+#sheet(
+  no_margin: true,
+  name: "Commands List",
+  function_scope: none,
+  iec_61355_type: "EFQ",
+  creator: "Remi Godin",
+  product: "CMD1",
+  approver: none,
+)[
+  #render-command-table(commands, start: 0, stop: 100)
 ]
 
 
