@@ -131,7 +131,7 @@
         weight: "bold",
         font: "Noto Sans Mono",
         fill: orange,
-        "[P" + str(num) + prefix + "]",
+        "[C" + str(num) + prefix + "]",
       )
         + text(
           font: "Noto Sans Mono",
@@ -161,7 +161,7 @@
   table(
     columns: (auto, 1fr, auto),
     align: horizon,
-    [*ID*], [*commandeter Name*], [*Type*],
+    [*ID*], [*Command Name*], [*Type*],
 
     ..for (id, info) in filtered-commands {
       (
