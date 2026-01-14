@@ -56,6 +56,8 @@ Safety routines are routines that are executed upon a loss of level 1 permissive
 #include "./ops_routines/seq11.typ"
 #include "./ops_routines/seq12.typ"
 
+= Auxiliary Routines<auxiliary_routines>
+#include "./aux_routines/seq13.typ"
 
 = Communications
 == Summary
