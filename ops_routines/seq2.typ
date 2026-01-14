@@ -46,7 +46,7 @@
   + WAIT for #param(38)
   + Start #tag[P310] at #param(39)
   + Start #tag[P311] at #param(40)
-  + Request to start @brine_heaters
+  + Request to start brine heaters
   + WAIT for #param(41)
   + Set #tag[P310] speed at #param(42)
   + Set #tag[P311] speed at #param(43)
@@ -55,7 +55,7 @@
   + Set #tag[P311] speed at #param(46)
 
   ==== Stop Narrative
-  + Stop @brine_heaters
+  + Stop brine heaters
   + Stop #tag[P310]
   + Stop #tag[P311]
   + Deactivate #tag[P310] contactor

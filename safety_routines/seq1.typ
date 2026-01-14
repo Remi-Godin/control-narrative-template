@@ -8,5 +8,5 @@
   product: "SEQ1",
   approver: none,
 )[
-  #align(center + horizon, image("../safety_protocol_1.svg"))
+  #align(center + horizon, image("../assets/drawings/fef_seq1.svg"))
 ]
